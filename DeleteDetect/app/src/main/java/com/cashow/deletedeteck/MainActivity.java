@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     // 删除按钮的点击次数
     private int deleteCount;
 
-    // 零宽空格，不会引起换行
+    // "\uFEFF"是零宽空格，不会引起换行
     // 需要注意的是，"\u200b"也是零宽空格，但是这个字符会导致换行
     // 也就是说，如果"\u200b"字符后面的单词超出了该行的剩余长度，会导致这个单词换行，在下一行显示
     // 使用"\uFEFF"就不会出现这种情况
