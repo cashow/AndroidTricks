@@ -4,3 +4,6 @@
 
 ### DeleteDetect
 监测edittext的删除事件
+
+### ListviewPullToZoom
+Listview下拉时图片缩放
