@@ -1,0 +1,3 @@
+[submodule "Android-Tilt-Shift"]
+	path = Android-Tilt-Shift
+	url = git@github.com-wy:cashow/Android-Tilt-Shift.git
