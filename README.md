@@ -5,6 +5,9 @@
 ### DeleteDetect
 监测edittext的删除事件
 
+### KeyboardHeight
+监听软键盘状态以及获取软键盘的高度
+
 ### ListviewPullToZoom
 Listview下拉时图片缩放
 
