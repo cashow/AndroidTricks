@@ -11,6 +11,18 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * 这个项目用了2种方法实现android与网页之间的通信
+ * 1. webview拦截跳转链接：
+ *    如果网页要传输字符串"hello"给android，可以在要传输的字符串前面加上约定好的前缀（例如本项目中的"jstag://"），
+ *    并在网页里给按钮加上 前缀 + 字符串（例如"jstag://hello"）的链接。
+ *    webview在监测到带有约定前缀的链接后，可以拦截页面的跳转并将跳转链接按约定的格式进行处理。
+ * 2. webview里定义JavascriptInterface：
+ *    这个方法是将java的对象映射到JavaScript上。
+ *    例如在本项目中，是将java的 JsInterface 对象映射到了JavaScript的 window.androidtag。
+ *    如果在JavaScript里调用 window.androidtag.showMessage,会调用 JsInterface 对象的showMessage()方法
+ * ps：这个项目对应的html代码链接：https://github.com/cashow/cashow.github.io/blob/master/html/android_webview.html
+ */
 public class MainActivity extends AppCompatActivity {
 
     private WebView webview;
