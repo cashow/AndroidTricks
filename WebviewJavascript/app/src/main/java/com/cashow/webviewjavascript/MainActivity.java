@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private WebView webview;
     private Button button;
 
+    private boolean isPageFinished;
+
     private final static String test_url = "http://cashow.github.io/html/android_webview";
     private final static String WEBVIEW_JS_TAG = "jstag://";
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        isPageFinished = false;
 
         findView();
         initWebview();
@@ -65,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                isPageFinished = true;
+            }
         });
         webview.loadUrl(test_url);
     }
@@ -73,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webview.loadUrl("javascript:alertMessage(\"hello from java\")");
+                if (isPageFinished) {
+                    webview.loadUrl("javascript:alertMessage(\"hello from java\")");
+                } else {
+                    Toast.makeText(getApplicationContext(), "网页还在加载中", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
