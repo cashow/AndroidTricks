@@ -14,6 +14,10 @@
 
 Listview下拉时图片缩放
 
+### TagGroup
+
+标签组
+
 ### TiltShift
 
 实现类似Instagram的移轴效果
