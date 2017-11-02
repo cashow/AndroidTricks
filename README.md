@@ -4,7 +4,7 @@
 
 ### DeleteDetect
 
-监测edittext的删除事件
+监测 EditText 的删除事件
 
 ### KeyboardHeight
 
@@ -12,7 +12,11 @@
 
 ### ListviewPullToZoom
 
-Listview下拉时图片缩放
+Listview 下拉时图片缩放
+
+### NestedRecyclerView
+
+解决竖向的 RecyclerView 嵌套横向的 RecyclerView 时，竖向的 RecyclerView 有时候会自动下滑的问题
 
 ### TagGroup
 
