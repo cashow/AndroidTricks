@@ -8,7 +8,7 @@
 
 3.将竖向的 RecyclerView 隐藏后再显示。
 
-![demo](http://7sbs06.com1.z0.glb.clouddn.com/nested_recycler_view_scroll_down.gif)
+![demo](http://7sbs06.com1.z0.glb.clouddn.com/nested_recycler_view_scroll_down.gif?)
 
 在确定了复现步骤后，我 Google 到了这个回答：
 
