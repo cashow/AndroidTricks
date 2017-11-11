@@ -2,6 +2,10 @@
 
 这个项目主要记录工作中遇到的一些问题以及相应的解决方案
 
+### ArticleEditor
+
+一个简单的长图文编辑器
+
 ### DeleteDetect
 
 监测 EditText 的删除事件
