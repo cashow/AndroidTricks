@@ -1,0 +1,11 @@
+# QrcodeScan
+
+二维码扫描 + 从相册解析二维码图片
+
+要是没记错的话，应该是修改自这个项目：
+
+<https://github.com/chentao0707/QrCodeScan>
+
+示例图：
+
+![demo](https://github.com/cashow/AndroidTricks/blob/master/QrcodeScan/demo.gif)

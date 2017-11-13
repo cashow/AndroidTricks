@@ -22,6 +22,10 @@ Listview 下拉时图片缩放
 
 解决竖向的 RecyclerView 嵌套横向的 RecyclerView 时，竖向的 RecyclerView 有时候会自动下滑的问题
 
+### QrcodeScan
+
+二维码扫描 + 从相册解析二维码图片
+
 ### TagGroup
 
 标签组

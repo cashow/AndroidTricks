@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">二维码扫描</string>
+    <string name="scan_failed">扫描失败</string>
+</resources>
