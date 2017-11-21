@@ -26,6 +26,10 @@ Listview 下拉时图片缩放
 
 解决竖向的 RecyclerView 嵌套横向的 RecyclerView 时，竖向的 RecyclerView 有时候会自动下滑的问题
 
+### PhotoBrush
+
+有些图片处理的 app 有模糊背景的功能，允许你把图片的背景手动涂抹掉，目的是为了去掉和照片无关的背景内容，或是去掉一些隐私信息。这个项目是实现用来模糊图片背景的笔刷功能。
+
 ### QrcodeScan
 
 二维码扫描 + 从相册解析二维码图片

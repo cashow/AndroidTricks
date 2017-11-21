@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cashow.photobrush.app.brush.view.BrushView
+        android:id="@+id/brush_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#f0231815">
+
+            <TextView
+                android:id="@+id/text_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:text="@string/next"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <com.cashow.photobrush.app.brush.view.SquareImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/photo_active"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_option_brush_undo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_brush_undo"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:src="@drawable/photo_brush_undo_normal" />
+
+                <TextView
+                    android:id="@+id/text_brush_undo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/photo_brush_cancel"
+                    android:textColor="@color/photo_option_normal"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_option_brush_clear"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_brush_clear"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:src="@drawable/photo_brush_clear_normal" />
+
+                <TextView
+                    android:id="@+id/text_brush_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/photo_brush_delete"
+                    android:textColor="@color/photo_option_normal"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
