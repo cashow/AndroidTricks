@@ -209,7 +209,6 @@ public class BrushView extends RelativeLayout {
      * 合并原图和笔刷图
      */
     public Bitmap getProcessedBitmap() {
-        // 记录是否使用过模糊、画笔、贴纸功能。在发布图片时需要上传到友盟自定义事件
         // 最终要生成的图片
         Bitmap processedBitmap = Bitmap.createBitmap(oriBitmap.getWidth(), oriBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         int width = processedBitmap.getWidth();
