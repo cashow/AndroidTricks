@@ -22,6 +22,10 @@ lifecycle 库的 demo
 
 Listview 下拉时图片缩放
 
+### MLog
+
+自定义的 log 工具，能打印 json 对象，打印 Exception 的 StackTrace，以及记录两次 log 之间的时间间隔
+
 ### NestedRecyclerView
 
 解决竖向的 RecyclerView 嵌套横向的 RecyclerView 时，竖向的 RecyclerView 有时候会自动下滑的问题
