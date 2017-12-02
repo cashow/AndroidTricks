@@ -17,10 +17,10 @@ RxJava最核心的是Observables（被观察者，事件源）和Subscribers（�
 
 ### 创建一个Observable
 ```java
-Observable&lt;String&gt; myObservable = Observable.create(
-    new Observable.OnSubscribe&lt;String&gt;() {
+Observable<String> myObservable = Observable.create(
+    new Observable.OnSubscribe<String>() {
         @Override
-        public void call(Subscriber&lt;? super String&gt; sub) {
+        public void call(Subscriber<? super String> sub) {
             sub.onNext("Hello, world!");
             sub.onCompleted();
         }
@@ -31,7 +31,7 @@ Observable&lt;String&gt; myObservable = Observable.create(
 
 ### 创建一个Subscriber
 ```java
-Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() {
+Subscriber<String> mySubscriber = new Subscriber<String>() {
     @Override
     public void onNext(String s) { System.out.println(s); }
 
@@ -47,14 +47,14 @@ Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() {
 Action0是RxJava的一个接口，它只有一个方法call()，这个方法是无参无返回值的。  
 Action1也是一个接口，它同样只有一个方法call(T param)，这个方法也无返回值，但有一个参数。  
 ```java
-Action1&lt;String&gt; onNextAction = new Action1&lt;String&gt;() {
+Action1<String> onNextAction = new Action1<String>() {
     // onNext()
     @Override
     public void call(String s) {
         Log.d(tag, s);
     }
 };
-Action1&lt;Throwable&gt; onErrorAction = new Action1&lt;Throwable&gt;() {
+Action1<Throwable> onErrorAction = new Action1<Throwable>() {
     // onError()
     @Override
     public void call(Throwable throwable) {
@@ -91,10 +91,10 @@ observable.subscribe(onNextAction, onErrorAction, onCompletedAction);
 ### create操作符
 创建一个自定义的Observable
 ```java
-Observable&lt;String&gt; myObservable = Observable.create(
-    new Observable.OnSubscribe&lt;String&gt;() {
+Observable<String> myObservable = Observable.create(
+    new Observable.OnSubscribe<String>() {
         @Override
-        public void call(Subscriber&lt;? super String&gt; sub) {
+        public void call(Subscriber<? super String> sub) {
             sub.onNext("Hello, world!");
             sub.onCompleted();
         }
@@ -112,7 +112,7 @@ public class SomeType {
         this.value = value;
     }
 
-    public Observable&lt;String&gt; valueObservable() {
+    public Observable<String> valueObservable() {
         return Observable.just(value);
     }
 }
@@ -121,12 +121,12 @@ public class SomeType {
 // 原因就是在用just创建Observable时，Observable已经将value的值保存下来了
 // 因此在subscribe时value的值是null
 SomeType instance = new SomeType();  
-Observable&lt;String&gt; value = instance.valueObservable();  
+Observable<String> value = instance.valueObservable();  
 instance.setValue("Some Value");  
 value.subscribe(System.out::println);  
 
 // 使用defer，可在每次被订阅时再创建Observable
-Observable.defer(() -&gt; Observable.just(value));
+Observable.defer(() -> Observable.just(value));
 ```
 详细说明可查看：[Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/)
 
@@ -182,13 +182,13 @@ Observable.range(0, 3)
 map操作符用来把Observable传来的数据转换成另一个数据。
 ```java
 Observable.just("Hello, world!")
-	.map(new Func1&lt;String, String&gt;() {
+	.map(new Func1<String, String>() {
 	  @Override
 	  public String call(String s) {
 	      return s + " -Dan";
 	  }
 })
-.subscribe(s -&gt; System.out.println(s));
+.subscribe(s -> System.out.println(s));
 
 //使用lambda表达式简化后：
 Observable.just("Hello, world!")
@@ -200,19 +200,19 @@ Observable.just("Hello, world!")
 flatMap将Observable的数据转换成一个或多个Observable。  
 ```java
 // 假设有个函数根据输入的字符串返回一个url列表：
-Observable&lt;List&lt;String&gt;&gt; query(String text){
+Observable<List<String>> query(String text){
 	// ...
 }
 
 // 现在需要查询"Hello, world!"字符串并且显示结果
 query("Hello, world!")
-    .flatMap(new Func1&lt;List&lt;String&gt;, Observable&lt;String&gt;&gt;() {
+    .flatMap(new Func1<List<String>, Observable<String>>() {
         @Override
-        public Observable&lt;String&gt; call(List&lt;String&gt; urls) {
+        public Observable<String> call(List<String> urls) {
             return Observable.from(urls);
         }
     })
-    .subscribe(url -&gt; System.out.println(url));
+    .subscribe(url -> System.out.println(url));
 
 //使用lambda表达式简化后：
 query("Hello, world!")
@@ -225,33 +225,33 @@ filter把输入的数据进行过滤，然后输出符合条件的数据。
 ```java
 //过滤title为null的数据
 query("Hello, world!")
-	.flatMap(urls -&gt; Observable.from(urls))
-	.flatMap(url -&gt; getTitle(url))
-	.filter(title -&gt; title != null)
-	.subscribe(title -&gt; System.out.println(title));
+	.flatMap(urls -> Observable.from(urls))
+	.flatMap(url -> getTitle(url))
+	.filter(title -> title != null)
+	.subscribe(title -> System.out.println(title));
 ```
 
 ### take操作符
 take指定最多输出多少个结果。
 ```java
 query("Hello, world!")
-    .flatMap(urls -&gt; Observable.from(urls))
-    .flatMap(url -&gt; getTitle(url))
-    .filter(title -&gt; title != null)
+    .flatMap(urls -> Observable.from(urls))
+    .flatMap(url -> getTitle(url))
+    .filter(title -> title != null)
     .take(5)
-    .subscribe(title -&gt; System.out.println(title));
+    .subscribe(title -> System.out.println(title));
 ```
 
 ### doOnNext操作符
 doOnNext允许我们在每次输出一个元素之前做一些额外的事情，比如这里的保存标题。
 ```java
 query("Hello, world!")
-    .flatMap(urls -&gt; Observable.from(urls))
-    .flatMap(url -&gt; getTitle(url))
-    .filter(title -&gt; title != null)
+    .flatMap(urls -> Observable.from(urls))
+    .flatMap(url -> getTitle(url))
+    .filter(title -> title != null)
     .take(5)
-    .doOnNext(title -&gt; saveTitle(title))
-    .subscribe(title -&gt; System.out.println(title));
+    .doOnNext(title -> saveTitle(title))
+    .subscribe(title -> System.out.println(title));
 ```
 
 ### buffer操作符
@@ -259,7 +259,7 @@ query("Hello, world!")
 ```java
 // 每2秒更新一次在这期间view的点击次数
 RxView.clickEvents(_tapBtn)
-      .map(new Func1&lt;ViewClickEvent, Integer&gt;() {
+      .map(new Func1<ViewClickEvent, Integer>() {
           @Override
           public Integer call(ViewClickEvent onClickEvent) {
               _log("GOT A TAP");
@@ -268,7 +268,7 @@ RxView.clickEvents(_tapBtn)
       })
       .buffer(2, TimeUnit.SECONDS)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(new Observer&lt;List&lt;Integer&gt;&gt;() {
+      .subscribe(new Observer<List<Integer>>() {
 
           @Override
           public void onCompleted() {
@@ -281,9 +281,9 @@ RxView.clickEvents(_tapBtn)
           }
 
           @Override
-          public void onNext(List&lt;Integer&gt; integers) {
+          public void onNext(List<Integer> integers) {
               Timber.d("--------- onNext");
-              if (integers.size() &gt; 0) {
+              if (integers.size() > 0) {
                   _log(String.format("%d taps", integers.size()));
               }
           }
@@ -313,9 +313,9 @@ RxView.clickEvents(button)
 代码中的potentialException() 和 anotherPotentialException()有可能会抛出异常。每一个Observerable对象在终结的时候都会调用onCompleted()或者onError()方法，所以以下代码会打印出”Completed!”或者”Ouch!”。
 ```java
 Observable.just("Hello, world!")
-    .map(s -&gt; potentialException(s))
-    .map(s -&gt; anotherPotentialException(s))
-    .subscribe(new Subscriber&lt;String&gt;() {
+    .map(s -> potentialException(s))
+    .map(s -> anotherPotentialException(s))
+    .subscribe(new Subscriber<String>() {
         @Override
         public void onNext(String s) { System.out.println(s); }
 
@@ -402,9 +402,9 @@ observable4
 ```
 使用 compose() 方法，Observable 可以利用传入的 Transformer 对象的 call 方法直接对自身进行处理。
 ```java
-public class LiftAllTransformer implements Observable.Transformer&lt;Integer, String&gt; {
+public class LiftAllTransformer implements Observable.Transformer<Integer, String> {
     @Override
-    public Observable&lt;String&gt; call(Observable&lt;Integer&gt; observable) {
+    public Observable<String> call(Observable<Integer> observable) {
         return observable
             .lift1()
             .lift2()
@@ -453,7 +453,7 @@ AndroidSchedulers.mainThread()
 Observable.just(1, 2, 3, 4)
     .subscribeOn(Schedulers.io()) // 指定subscribe()发生在IO线程
     .observeOn(AndroidSchedulers.mainThread()) // 指定Subscriber的回调发生在主线程
-    .subscribe(new Action1&lt;Integer&gt;() {
+    .subscribe(new Action1<Integer>() {
         @Override
         public void call(Integer number) {
             Log.d(tag, "number:" + number);
