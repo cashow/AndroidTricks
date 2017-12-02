@@ -156,7 +156,7 @@ Observable observable = Observable.from(words);
 
 ### interval操作符
 每隔一段时间发送一个从0开始递增的数字。  
-<pre class='mcode'>
+```java
 // 每隔500ms发送一个数字，依次是0，1，2，3，4...
 // 这个操作会无限进行下去，所以需要手动取消掉这个subscription
 Observable.interval(500, TimeUnit.MILLISECONDS);
