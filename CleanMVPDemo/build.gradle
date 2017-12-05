@@ -1,0 +1,23 @@
+apply from: 'dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+    }
+}
+
+allprojects {
+    ext {
+        androidApplicationId = 'com.cashow.cleanmvpdemo'
+        androidVersionCode = 1
+        androidVersionName = "1.0"
+    }
+}
+repositories {
+    google()
+}

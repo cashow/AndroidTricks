@@ -6,6 +6,10 @@
 
 一个简单的长图文编辑器
 
+### CleanMVPDemo
+
+Clean 架构学习笔记
+
 ### DeleteDetect
 
 监测 EditText 的删除事件
