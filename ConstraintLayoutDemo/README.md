@@ -76,7 +76,7 @@ WRAP_CONTENT
 
 ConstraintLayout 里的控件不支持 MATCH_PARENT。
 
-当控件的宽度设置为 MATCH_CONSTRAINT 时，这个控件和会在约束条件内占据所有空间。
+当控件的宽度设置为 MATCH_CONSTRAINT 时，这个控件会在约束条件内占据所有空间。
 
 ### 只有一个维度的约束
 
@@ -108,11 +108,11 @@ ConstraintLayout 里的控件不支持 MATCH_PARENT。
 
 ### 指定约束的维度
 
-当一个控件被两个维度都有约束，可以使用 W 或 H 来指定哪个维度被约束。最大边以指明的宽度或者高度为准
+当一个控件的两个维度都有约束，可以使用 W 或 H 来指定哪个维度被约束（例如 "W,2:1" 或者 "H,2:1"）。最大边以指明的宽度或者高度为准。
 
 ### 圆形定位 (添加于 1.1 版本)
 
-你可以把一个控件放到相对于另一个控件中心点的圆形区域内，例如把删除的 icon 放到某个布局的右上角。
+你可以把一个控件放到相对于另一个控件中心点的圆形区域内，例如把删除 icon 放到某个布局的右上角。
 
 * layout_constraintCircle : 要对齐的控件的 id
 * layout_constraintCircleRadius : 离控件中心点的距离
@@ -140,7 +140,7 @@ ConstraintLayout 里的控件不支持 MATCH_PARENT。
 
 chains 的左上方的控件可看做 chain 的头部。
 
-### chain 的样式
+### Chains 的样式
 
 你可以通过 chain 头部的 layout_constraintHorizontal_chainStyle 或者 layout_constraintVertical_chainStyle 属性，设置 chain 的样式（默认是 CHAIN_SPREAD）。
 
