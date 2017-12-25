@@ -14,7 +14,7 @@
 
 Clean 架构学习笔记
 
-### [ConstraintLayoutDemo](https://github.com/cashow/AndroidTricks/tree/master/ConstraintLayoutDemoemo)
+### [ConstraintLayoutDemo](https://github.com/cashow/AndroidTricks/tree/master/ConstraintLayoutDemo)
 
 ConstraintLayout 的学习笔记
 
