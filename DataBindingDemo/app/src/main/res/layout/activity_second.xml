@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class=".ContactItem">
+        <import type="android.view.View" />
+        <import type="java.util.List" />
+        <import type="com.cashow.databindingdemo.util.UserUtils" />
+        <variable
+            name="user"
+            type="com.cashow.databindingdemo.model.User" />
+
+        <variable
+            name="userList"
+            type="List&lt;com.cashow.databindingdemo.model.User&gt;" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{user.isAdult ? View.VISIBLE : View.GONE}"
+            android:text="@{user.firstName}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{String.valueOf(userList.size())}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{UserUtils.getFullName(user.firstName, user.lastName)}"/>
+    </LinearLayout>
+</layout>
