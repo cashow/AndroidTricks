@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu1"
+        android:title="layout_1" />
+    <item
+        android:id="@+id/menu2"
+        android:title="layout_2" />
+    <item
+        android:id="@+id/menu3"
+        android:title="layout_3" />
+    <item
+        android:id="@+id/menu4"
+        android:title="layout_4" />
+    <item
+        android:id="@+id/menu5"
+        android:title="layout_5" />
+    <item
+        android:id="@+id/menu6"
+        android:title="layout_6" />
+    <item
+        android:id="@+id/menu7"
+        android:title="layout_7" />
+    <item
+        android:id="@+id/menu8"
+        android:title="layout_8" />
+    <item
+        android:id="@+id/menu9"
+        android:title="layout_9" />
+    <item
+        android:id="@+id/menu10"
+        android:title="layout_10" />
+    <item
+        android:id="@+id/menu11"
+        android:title="layout_11" />
+    <item
+        android:id="@+id/menu12"
+        android:title="layout_12" />
+    <item
+        android:id="@+id/menu13"
+        android:title="layout_13" />
+    <item
+        android:id="@+id/menu14"
+        android:title="layout_14" />
+    <item
+        android:id="@+id/menu15"
+        android:title="layout_15" />
+</menu>

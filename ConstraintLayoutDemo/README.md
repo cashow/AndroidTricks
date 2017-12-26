@@ -9,7 +9,8 @@ ConstraintLayout 的学习笔记
 <https://developer.android.com/reference/android/support/constraint/Guideline.html>  
 <http://blog.csdn.net/guolin_blog/article/details/53122387>  
 <http://blog.csdn.net/zxt0601/article/details/72683379>  
-<http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/1019/8618.html>
+<http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/1019/8618.html>  
+<https://constraintlayout.com/basics/barriers.html>
 
 -------
 
@@ -149,3 +150,80 @@ chains 的左上方的控件可看做 chain 的头部。
 * CHAIN_PACKED -- 内部的控件会挤在一起
 
 ![chains-styles](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/chains-styles.png)
+
+### Guideline
+
+Guideline 是个工具类，只能用在 ConstraintLayout 里，是用来辅助布局的。Guideline 都是 View.GONE。
+
+Guideline 可以是水平的或者垂直的：
+
+* 水平的 Guidelines 宽度是 0，高度和 ConstraintLayout 父控件一致。
+* 垂直的 Guidelines 高度是 0，宽度和 ConstraintLayout 父控件一致。
+
+有 3 种方式可以定位 Guideline：
+
+* 指定距离左边或者上边的固定间距：layout_constraintGuide_begin
+* 指定距离左边或者上边的固定间距：layout_constraintGuide_end
+* 指定横向或者纵向的百分比：layout_constraintGuide_percent
+
+### Group (添加于 1.1 版本)
+
+这个类可以控制一组 view 的 visibility。
+
+```xml
+<android.support.constraint.Group
+         android:id="@+id/group"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:visibility="visible"
+         app:constraint_referenced_ids="button4,button9" />
+```
+
+例如上面的 Group 将 id 是 button4 和 button9 的 view 设成了 visible。
+
+需要注意的是，Group 目前不支持添加点击事件，所以如果需要对 Group 里的 view 加统一的点击事件，需要将 Group 里的每个 view 取出来单独设置。
+
+```java
+int buttonIds[] = groupButton.getReferencedIds();
+
+for (int buttonId : buttonIds) {
+    findViewById(buttonId).setOnClickListener(v -> {
+        ...
+    });
+}
+```
+
+### Barrier (添加于 1.1 版本)
+
+先来看这个例子：
+
+![constraintlayout_barrier_1](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintlayout_barrier_1.png)
+
+左边有两个 TextView：text_top 和 text_bottom，右边有一个 TextView：text_right
+
+其中，左边两个 TextView 的内容是不固定的，宽度是 wrap_content。
+
+假如你把 text_right 置于 text_top 的右边，那么当 text_bottom 文字过长时，会和 text_right 重合。
+
+![constraintlayout_barrier_2](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintlayout_barrier_2.png)
+
+假如你把 text_right 置于 text_bottom 的右边，那么当 text_top 文字过长时，会和 text_right 重合。
+
+![constraintlayout_barrier_3](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintlayout_barrier_3.png)
+
+一般情况下，为了解决这类问题，你需要把 text_top 和 text_bottom 放到一个 ViewGroup 里，再将 text_right 置于 ViewGroup 的右边。通过添加 Barrier 的方式，你也可以实现以上的需求：
+
+```xml
+<android.support.constraint.Barrier
+    android:id="@+id/barrier"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:barrierDirection="end"
+    app:constraint_referenced_ids="text_top,text_bottom" />
+```
+
+以上代码添加了一个竖向的 Barrier，你可以理解成是辅助线，并且通过 constraint_referenced_ids 关联了一组 view (text_top 和 text_bottom)，通过 barrierDirection 指定了 Barrier 在这组 view 的右边。
+
+这样的话，你就添加了一条在 text_top 和 text_bottom 右边的辅助线，你只需将 text_right 置于这条辅助线的右边即可。
+
+![constraintlayout_barrier_4](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintlayout_barrier_4.png)
