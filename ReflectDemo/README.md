@@ -12,7 +12,7 @@
 
 ### 简介
 
-反射允许运行中的Java程序对自身进行检查，并能直接操作程序的内部属性或方法。反射机制允许程序在正在执行的过程中，利用反射 API 取得任何已知名称的类的内部信息，包括：package、 type parameters、 superclass、 implemented interfaces、 inner classes、 outer classes、 fields、 constructors、 methods、 modifiers 等，并可以在执行的过程中，动态生成 Instances、变更 fields 内容或唤起 methods。
+反射允许运行中的 Java 程序对自身进行检查，并能直接操作程序的内部属性或方法。反射机制允许程序在正在执行的过程中，利用反射 API 取得任何已知名称的类的内部信息，包括：package、 type parameters、 superclass、 implemented interfaces、 inner classes、 outer classes、 fields、 constructors、 methods、 modifiers 等，并可以在执行的过程中，动态生成 Instances、变更 fields 内容或唤起 methods。
 
 我们可以利用反射机制在 Java 程序中，动态的去调用一些 protected 甚至是 private 的方法或类，这样可以很大程度上满足我们的一些比较特殊需求。
 
@@ -319,7 +319,7 @@ private class java.lang.String name = userName
 
 ### 获取类、属性、方法的修饰域
 
-Class、Method、Constructor、Field 都有一个 public 的方法 `int getModifiers()`，这个方法会返回一个 int 类型的数，表示修饰类型的** 组合 **值。
+Class、Method、Constructor、Field 都有一个 public 的方法 `int getModifiers()`，这个方法会返回一个 int 类型的数，表示修饰类型的 **组合** 值。
 
 修饰类型包含以下几种：
 
