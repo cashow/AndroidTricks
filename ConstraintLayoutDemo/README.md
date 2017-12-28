@@ -234,7 +234,7 @@ for (int buttonId : buttonIds) {
 
 假如你要实现以下效果：
 
-![constraintset_demo](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintset_demo.png)
+![constraintset_demo](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintset_demo.gif)
 
 利用 ConstraintSet，你只需要几行代码就能实现。
 
