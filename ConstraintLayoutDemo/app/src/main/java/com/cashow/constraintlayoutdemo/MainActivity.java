@@ -1,5 +1,6 @@
 package com.cashow.constraintlayoutdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Group;
 import android.support.v7.app.AppCompatActivity;
@@ -109,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         layoutList.get(currentLayout).setVisibility(View.GONE);
         switch (item.getItemId()) {
+            case R.id.menu0:
+                startActivity(new Intent(this, SecondActivity.class));
+                break;
+            case R.id.menu00:
+                startActivity(new Intent(this, ThirdActivity.class));
+                break;
             case R.id.menu1:
                 currentLayout = 0;
                 break;

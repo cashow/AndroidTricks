@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null">
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/text_top_1"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="#3970ee"
+        android:gravity="center"
+        android:text="Andromeda"
+        android:textColor="#fff"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_top_2"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:background="#333"
+        android:gravity="center"
+        android:text="asdhihasdoi"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_top_1"
+        app:layout_constraintTop_toBottomOf="@+id/text_top_1" />
+
+    <TextView
+        android:id="@+id/text_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#3c3c3c"
+        android:text="qwmdqdwifeiiowihfowehfowehfihweiofhwofhiwehfiohwiofhiohweifohewfowheiofihow"
+        android:textColor="#fff"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_bg" />
+</android.support.constraint.ConstraintLayout>

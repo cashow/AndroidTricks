@@ -227,3 +227,35 @@ for (int buttonId : buttonIds) {
 这样的话，你就添加了一条在 text_top 和 text_bottom 右边的辅助线，你只需将 text_right 置于这条辅助线的右边即可。
 
 ![constraintlayout_barrier_4](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintlayout_barrier_4.png)
+
+---
+
+### 利用 ConstraintSet 实现动画
+
+假如你要实现以下效果：
+
+![constraintset_demo](https://github.com/cashow/AndroidTricks/blob/master/ConstraintLayoutDemo/images/constraintset_demo.png)
+
+利用 ConstraintSet，你只需要几行代码就能实现。
+
+你需要准备两个布局文件，一个是动画初始状态，一个动画结束状态。
+
+然后调用以下代码：
+
+```java
+private void updateConstraints(@LayoutRes int id) {
+    ConstraintSet newConstraintSet = new ConstraintSet();
+    newConstraintSet.clone(this, id);
+    newConstraintSet.applyTo(root);
+
+    ChangeBounds transition = new ChangeBounds();
+    transition.setInterpolator(new OvershootInterpolator());
+    TransitionManager.beginDelayedTransition(root, transition);
+}
+```
+
+传入动画结束状态时的布局 id，会开启一个动画，将页面内的约束从初始状态改动结束状态。
+
+需要注意的是，这个动画只能针对 ConstraintLayout.LayoutParams 里的参数，TextView 的文字大小并不能跟着动画自动变化，这个问题是个已知的 issue 并且是 Won't Fix 状态：
+
+<https://issuetracker.google.com/issues/70740827>

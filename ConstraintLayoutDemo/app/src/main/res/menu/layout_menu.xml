@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/menu0"
+        android:title="second_activity" />
+    <item
+        android:id="@+id/menu00"
+        android:title="third_activity" />
+    <item
         android:id="@+id/menu1"
         android:title="layout_1" />
     <item
