@@ -254,7 +254,7 @@ private void updateConstraints(@LayoutRes int id) {
 }
 ```
 
-传入动画结束状态时的布局 id，会开启一个动画，将页面内的约束从初始状态改动结束状态。
+传入动画结束状态时的布局 id，会开启一个动画，将页面内的约束从初始状态变化到结束状态。
 
 需要注意的是，这个动画只能针对 ConstraintLayout.LayoutParams 里的参数，TextView 的文字大小并不能跟着动画自动变化，这个问题是个已知的 issue 并且是 Won't Fix 状态：
 
