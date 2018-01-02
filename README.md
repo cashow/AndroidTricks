@@ -30,6 +30,10 @@ Data Binding 的学习笔记
 
 监听软键盘状态以及获取软键盘的高度
 
+### [LayoutManagerDemo](https://github.com/cashow/AndroidTricks/tree/master/LayoutManagerDemo)
+
+LayoutManager 学习笔记
+
 ### [LifeCycleDemo](https://github.com/cashow/AndroidTricks/tree/master/LifeCycleDemo)
 
 lifecycle 库的 demo
