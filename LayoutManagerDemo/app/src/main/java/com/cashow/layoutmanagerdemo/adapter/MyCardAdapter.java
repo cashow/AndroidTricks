@@ -1,19 +1,22 @@
-package com.cashow.layoutmanagerdemo;
+package com.cashow.layoutmanagerdemo.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import butterknife.BindView;
+import com.cashow.layoutmanagerdemo.MLog;
+import com.cashow.layoutmanagerdemo.R;
+
 import butterknife.ButterKnife;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.MyViewHolder> {
+    private int count = 20;
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MLog.d();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_match_parent, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_image, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -21,17 +24,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         MLog.d("onBindViewHolder " + position);
-        holder.textView.setText("lalala : " + position);
+    }
+
+    public void removeTop() {
+        count -= 1;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 50;
+        return count;
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.textView)
-        TextView textView;
 
         public MyViewHolder(View itemView) {
             super(itemView);

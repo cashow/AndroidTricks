@@ -1,9 +1,12 @@
-package com.cashow.layoutmanagerdemo;
+package com.cashow.layoutmanagerdemo.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.cashow.layoutmanagerdemo.MLog;
+import com.cashow.layoutmanagerdemo.R;
 
 import butterknife.ButterKnife;
 

@@ -245,7 +245,7 @@ public class MyAnimHorizontalLayoutManager extends LayoutManager {
     }
 
     private void rotation(View child, float fraction) {
-        child.setRotationY(45 * fraction);
+        child.setRotationY(75 * fraction);
         child.setAlpha(0.5f * (1 - fraction) + 0.5f);
     }
 
