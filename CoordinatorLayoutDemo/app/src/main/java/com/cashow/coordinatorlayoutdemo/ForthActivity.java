@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ThirdActivity extends AppCompatActivity {
+public class ForthActivity extends AppCompatActivity {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
     @BindView(R.id.collapsingtoolbarlayout)
@@ -23,7 +23,7 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(R.layout.activity_forth);
         ButterKnife.bind(this);
 
         collapsingtoolbarlayout.setTitle("title");

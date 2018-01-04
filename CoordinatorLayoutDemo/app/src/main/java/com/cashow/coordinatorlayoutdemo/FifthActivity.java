@@ -1,16 +1,19 @@
 package com.cashow.coordinatorlayoutdemo;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.WindowManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ThirdActivity extends AppCompatActivity {
+public class FifthActivity extends AppCompatActivity {
+
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
     @BindView(R.id.collapsingtoolbarlayout)
@@ -21,10 +24,15 @@ public class ThirdActivity extends AppCompatActivity {
     MyAdapter myAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        setContentView(R.layout.activity_fifth);
+
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         collapsingtoolbarlayout.setTitle("title");
         toolbar.setLogo(R.mipmap.ic_launcher_round);
