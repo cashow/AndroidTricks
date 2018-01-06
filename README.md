@@ -30,6 +30,10 @@ Data Binding 的学习笔记
 
 监测 EditText 的删除事件
 
+### [HenCoderDemo](https://github.com/cashow/AndroidTricks/tree/master/HenCoderDemo)
+
+HenCoder 系列教程的学习笔记
+
 ### [KeyboardHeight](https://github.com/cashow/AndroidTricks/tree/master/KeyboardHeight)
 
 监听软键盘状态以及获取软键盘的高度
