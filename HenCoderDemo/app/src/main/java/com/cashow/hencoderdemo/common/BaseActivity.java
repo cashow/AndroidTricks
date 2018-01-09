@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -21,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
     private Constructor constructor;
+    protected Class[] baseViewClasses = getBaseViewClasses();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         ButterKnife.bind(this);
+
+        addDemoView(baseViewClasses[baseViewClasses.length - 1]);
     }
 
     protected void addDemoView(Class<? extends BaseView> viewClass) {
@@ -56,4 +61,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         baseView.setLayoutParams(params);
         return baseView;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        addDemoView(baseViewClasses[item.getItemId()]);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        for (int i = 0; i < baseViewClasses.length; i++) {
+            menu.add(Menu.NONE, i, Menu.NONE, baseViewClasses[i].getSimpleName());
+        }
+        return true;
+    }
+
+    protected abstract Class[] getBaseViewClasses();
 }
