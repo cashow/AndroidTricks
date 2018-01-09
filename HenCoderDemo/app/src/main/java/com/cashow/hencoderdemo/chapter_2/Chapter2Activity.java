@@ -10,7 +10,7 @@ import com.cashow.hencoderdemo.common.BaseActivity;
 public class Chapter2Activity extends BaseActivity {
     private Class[] baseViewClasses = new Class[]{PaintColorView.class, PorterDuffModeView.class,
             ColorFilterView.class, XferModeView.class, PaintView.class, PaintFilterView.class,
-            PaintPathEffectView.class};
+            PaintPathEffectView.class, MaskFilterView.class, GetPathView.class, PaintInitView.class};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
