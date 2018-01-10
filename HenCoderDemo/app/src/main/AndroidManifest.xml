@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".chapter_1.Chapter1Activity" />
-        <activity android:name=".chapter_2.Chapter2Activity" />
-        <activity android:name=".chapter_3.Chapter3Activity" />
+        <activity android:name=".chapter_1_1.Chapter_1_1_Activity" />
+        <activity android:name=".chapter_1_2.Chapter_1_2_Activity" />
+        <activity android:name=".chapter_1_3.Chapter_1_3_Activity" />
+        <activity android:name=".chapter_1_4.Chapter_1_4_Activity" />
     </application>
 </manifest>

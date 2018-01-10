@@ -14,6 +14,8 @@ public abstract class BaseView extends View {
     protected Bitmap logoBitmap;
     protected Bitmap testBitmap;
     protected int viewType;
+    protected int logoWidth;
+    protected int logoHeight;
 
     public BaseView(Context context, Integer viewType) {
         super(context);
@@ -36,6 +38,8 @@ public abstract class BaseView extends View {
         this.context = context;
         logoBitmap = BitmapUtils.drawableToBitmap(context, R.drawable.ic_launcher);
         testBitmap = BitmapUtils.drawableToBitmap(context, R.drawable.test2);
+        logoWidth = logoBitmap.getWidth();
+        logoHeight = logoBitmap.getHeight();
     }
 
     public abstract int getViewTypeCount();
