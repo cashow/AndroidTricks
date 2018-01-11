@@ -8,6 +8,8 @@ import com.cashow.hencoderdemo.chapter_1_1.Chapter_1_1_Activity;
 import com.cashow.hencoderdemo.chapter_1_2.Chapter_1_2_Activity;
 import com.cashow.hencoderdemo.chapter_1_3.Chapter_1_3_Activity;
 import com.cashow.hencoderdemo.chapter_1_4.Chapter_1_4_Activity;
+import com.cashow.hencoderdemo.chapter_1_5.Chapter_1_5_Activity;
+import com.cashow.hencoderdemo.chapter_1_6.Chapter_1_6_Activity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        onChapter4Click();
+        onChapter6Click();
     }
 
     @OnClick(R.id.button_chapter_1)
@@ -41,5 +43,15 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.button_chapter_4)
     void onChapter4Click() {
         startActivity(new Intent(this, Chapter_1_4_Activity.class));
+    }
+
+    @OnClick(R.id.button_chapter_5)
+    void onChapter5Click() {
+        startActivity(new Intent(this, Chapter_1_5_Activity.class));
+    }
+
+    @OnClick(R.id.button_chapter_6)
+    void onChapter6Click() {
+        startActivity(new Intent(this, Chapter_1_6_Activity.class));
     }
 }

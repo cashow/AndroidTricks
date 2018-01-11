@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
     @BindView(R.id.layout_container)
-    ViewGroup layoutContainer;
+    protected ViewGroup layoutContainer;
 
     protected Context context;
     private Constructor constructor;
@@ -34,10 +35,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        addDemoView(baseViewClasses[baseViewClasses.length - 1]);
+        if (isAutoAddDemoView()) {
+            addDemoView(baseViewClasses[baseViewClasses.length - 1]);
+        }
     }
 
-    protected void addDemoView(Class<? extends BaseView> viewClass) {
+    protected boolean isAutoAddDemoView() {
+        return true;
+    }
+
+    private void addDemoView(Class<? extends BaseView> viewClass) {
         try {
             constructor = viewClass.getConstructor(Context.class, Integer.class);
             BaseView baseView = (BaseView) constructor.newInstance(context, 0);
@@ -53,6 +60,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void addView(View view) {
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 200);
+        view.setLayoutParams(layoutParams);
+        layoutContainer.addView(view);
+
+        addDivider();
+    }
+
+    protected void addDivider() {
+        View view = new View(context);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 40);
+        view.setLayoutParams(layoutParams);
+        layoutContainer.addView(view);
+    }
+
     private BaseView getBaseView(int viewType) throws IllegalAccessException, InvocationTargetException, InstantiationException {
         BaseView baseView = (BaseView) constructor.newInstance(context, viewType);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(CommonUtils.dp2px(context, 100), CommonUtils.dp2px(context, 100));
@@ -64,14 +86,18 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        addDemoView(baseViewClasses[item.getItemId()]);
+        if (isAutoAddDemoView()) {
+            addDemoView(baseViewClasses[item.getItemId()]);
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        for (int i = 0; i < baseViewClasses.length; i++) {
-            menu.add(Menu.NONE, i, Menu.NONE, baseViewClasses[i].getSimpleName());
+        if (isAutoAddDemoView()) {
+            for (int i = 0; i < baseViewClasses.length; i++) {
+                menu.add(Menu.NONE, i, Menu.NONE, baseViewClasses[i].getSimpleName());
+            }
         }
         return true;
     }

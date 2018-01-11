@@ -37,5 +37,19 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:text="chapter_4"/>
+
+        <Button
+            android:id="@+id/button_chapter_5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="chapter_5"/>
+
+        <Button
+            android:id="@+id/button_chapter_6"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="chapter_6"/>
     </LinearLayout>
 </ScrollView>
