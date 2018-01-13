@@ -103,4 +103,57 @@ public class ColorFilterView extends BaseView {
         paint.setShader(shader);
         canvas.drawRect(0, 0, 300, 300, paint);
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "setColorFilter(ColorFilter colorFilter)\n" +
+                        "为绘制设置颜色过滤。颜色过滤的意思，就是为绘制的内容设置一个统一的过滤策略，然后 Canvas.drawXXX() 方法会对每个像素都进行过滤后再绘制出来。\n" +
+                        "在 Paint 里设置 ColorFilter ，使用的是 Paint.setColorFilter(ColorFilter filter) 方法。\n" +
+                        "ColorFilter 并不直接使用，而是使用它的子类。\n" +
+                        "它共有三个子类：LightingColorFilter PorterDuffColorFilter 和 ColorMatrixColorFilter。\n\n" +
+                        "原图";
+            case 1:
+                return "LightingColorFilter 是用来模拟简单的光照效果的\n" +
+                        "LightingColorFilter(int mul, int add)\n" +
+                        "mul 和 add 都是和颜色值格式相同的 int 值，其中 mul 用来和目标像素相乘，add 用来和目标像素相加\n" +
+                        "R' = R * mul.R / 0xff + add.R\n" +
+                        "G' = G * mul.G / 0xff + add.G\n" +
+                        "B' = B * mul.B / 0xff + add.B\n\n" +
+                        "ColorFilter lightingColorFilter = new LightingColorFilter(0xff33ff, 0x000000)\n" +
+                        "paint.setColorFilter(lightingColorFilter)";
+            case 2:
+                return "PorterDuffColorFilter\n" +
+                        "这个的作用是使用一个指定的颜色和一种指定的 PorterDuff.Mode 来与绘制对象进行合成。\n" +
+                        "PorterDuffColorFilter(int color, PorterDuff.Mode mode)\n" +
+                        "color 参数是指定的颜色， mode 参数是指定的 PorterDuff.Mode ，不过和 ComposeShader 不同的是，\n" +
+                        "PorterDuffColorFilter 作为一个 ColorFilter，只能指定一种颜色作为源，而不是一个 Bitmap。\n\n" +
+                        "ColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Color.parseColor(\"#aaffffff\"), PorterDuff.Mode.SRC_OVER)\n" +
+                        "paint.setColorFilter(porterDuffColorFilter)";
+            case 3:
+                return "ColorMatrixColorFilter\n" +
+                        "使用一个 ColorMatrix 来对颜色进行处理\n" +
+                        "ColorMatrix 这个类，内部是一个 4x5 的矩阵：\n" +
+                        "[ a, b, c, d, e,\n" +
+                        "f, g, h, i, j,\n" +
+                        "k, l, m, n, o,\n" +
+                        "p, q, r, s, t ]\n" +
+                        "通过计算， ColorMatrix 可以把要绘制的像素进行转换。对于颜色 [R, G, B, A] ，转换算法是这样的：\n" +
+                        "R’ = a*R + b*G + c*B + d*A + e;\n" +
+                        "G’ = f*R + g*G + h*B + i*A + j;\n" +
+                        "B’ = k*R + l*G + m*B + n*A + o;\n" +
+                        "A’ = p*R + q*G + r*B + s*A + t;\n\n" +
+                        "// 将每个像素的 (R, G, B, A) 转成 (G, B, R, 0.5 * A)\n" +
+                        "float[] colorMatrix = new float[]{\n" +
+                        "       0.0f, 1.0f, 0.0f, 0.0f, 0.0f, // R’ = a*R + b*G + c*B + d*A + e;\n" +
+                        "       0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // G’ = f*R + g*G + h*B + i*A + j;\n" +
+                        "       1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // B’ = k*R + l*G + m*B + n*A + o;\n" +
+                        "       0.0f, 0.0f, 0.0f, 0.5f, 0.0f // A’ = p*R + q*G + r*B + s*A + t;\n" +
+                        "}\n" +
+                        "ColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix)\n" +
+                        "paint.setColorFilter(colorMatrixColorFilter)\n";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }

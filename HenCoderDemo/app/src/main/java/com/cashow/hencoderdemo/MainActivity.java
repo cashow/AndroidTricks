@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        onChapter1Click();
+        onChapter2Click();
     }
 
     @OnClick(R.id.button_chapter_1)

@@ -176,4 +176,118 @@ public class PaintView extends BaseView {
                 break;
         }
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "设置抗锯齿\n" +
+                        "setAntiAlias (boolean aa)\n" +
+                        "除了 setAntiAlias(aa) 方法，打开抗锯齿还有一个更方便的方式：构造方法。\n" +
+                        "创建 Paint 对象的时候，构造方法的参数里加一个  ANTI_ALIAS_FLAG 的 flag，就可以在初始化的时候就开启抗锯齿。\n\n" +
+                        "paint.setAntiAlias(false)\n" +
+                        "canvas.drawCircle(150, 150, 100, paint)";
+            case 1:
+                return "paint.setAntiAlias(true)\n" +
+                        "canvas.drawCircle(150, 150, 100, paint)";
+            case 2:
+                return "设置图形是线条风格还是填充风格\n" +
+                        "setStyle(Paint.Style style)\n" +
+                        "Paint.Style.FILL : 填充\n" +
+                        "Paint.Style.STROKE : 画线\n" +
+                        "Paint.Style.FILL_AND_STROKE : 填充 + 画线\n\n" +
+                        "设置线条宽度。单位为像素，默认值是 0。\n" +
+                        "setStrokeWidth(float width)\n" +
+                        "线条宽度为 0 时，它依然能够画出线，线条的宽度为 1 像素\n" +
+                        "线条宽度 0 和 1 的区别在于，\n" +
+                        "你可以为 Canvas 设置 Matrix 来实现几何变换（如放大、缩小、平移、旋转），\n" +
+                        "在几何变换之后 Canvas 绘制的内容就会发生相应变化，包括线条也会加粗，\n" +
+                        "例如 2 像素宽度的线条在 Canvas 放大 2 倍后会被以 4 像素宽度来绘制。\n" +
+                        "而当线条宽度被设置为 0 时，它的宽度就被固定为 1 像素，就算 Canvas 通过几何变换被放大，它也依然会被以 1 像素宽度来绘制。\n" +
+                        "Google 在文档中把线条宽度为 0 时称作「hairline mode（发际线模式）」。\n\n" +
+                        "paint.setAntiAlias(true);\n" +
+                        "paint.setStyle(Paint.Style.FILL);\n" +
+                        "canvas.drawCircle(150, 150, 100, paint)";
+            case 3:
+                return "paint.setAntiAlias(true);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "canvas.drawCircle(150, 150, 100, paint)";
+            case 4:
+                return "paint.setAntiAlias(true);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStyle(Paint.Style.FILL_AND_STROKE);\n" +
+                        "canvas.drawCircle(150, 150, 100, paint)";
+            case 5:
+                return "设置线头的形状\n" +
+                        "setStrokeCap(Paint.Cap cap)\n" +
+                        "线头形状有三种：BUTT 平头、ROUND 圆头、SQUARE 方头。默认为 BUTT。\n\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeCap(Paint.Cap.BUTT);\n" +
+                        "canvas.drawLine(0, 100, 200, 100, paint)";
+            case 6:
+                return "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeCap(Paint.Cap.ROUND);\n" +
+                        "canvas.drawLine(0, 100, 200, 100, paint)";
+            case 7:
+                return "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeCap(Paint.Cap.SQUARE);\n" +
+                        "canvas.drawLine(0, 100, 200, 100, paint)";
+            case 8:
+                return "设置拐角的形状。\n" +
+                        "setStrokeJoin(Paint.Join join)\n" +
+                        "有三个值可以选择：MITER 尖角、 BEVEL 平角和 ROUND 圆角。默认为 MITER。\n\n" +
+                        "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeJoin(Paint.Join.MITER);\n" +
+                        "path.moveTo(0, 60);\n" +
+                        "path.rLineTo(200, 0);\n" +
+                        "path.rLineTo(-100, 200);\n" +
+                        "canvas.drawPath(path, paint)";
+            case 9:
+                return "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeJoin(Paint.Join.BEVEL);\n" +
+                        "path.moveTo(0, 60);\n" +
+                        "path.rLineTo(200, 0);\n" +
+                        "path.rLineTo(-100, 200);\n" +
+                        "canvas.drawPath(path, paint)";
+            case 10:
+                return "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeJoin(Paint.Join.ROUND);\n" +
+                        "path.moveTo(0, 60);\n" +
+                        "path.rLineTo(200, 0);\n" +
+                        "path.rLineTo(-100, 200);\n" +
+                        "canvas.drawPath(path, paint)";
+            case 11:
+                return "设置 MITER 型拐角的延长线的最大值\n" +
+                        "setStrokeMiter(float miter)\n" +
+                        "这个方法是对于 setStrokeJoin() 的一个补充：如果拐角的角度太小，就有可能出现连接点过长的情况\n" +
+                        "为了避免意料之外的过长的尖角出现， MITER 型连接点有一个额外的规则：当尖角过长时，自动改用 BEVEL 的方式来渲染连接点\n" +
+                        "至于多尖的角属于过于尖，尖到需要转为使用 BEVEL 来绘制，则是由一个属性控制的，而这个属性就是 setStrokeMiter(miter) 方法中的 miter 参数。\n" +
+                        "miter 参数是对于转角长度的限制，具体来讲，是指尖角的外缘端点和内部拐角的距离与线条宽度的比。\n" +
+                        "这个 miter limit 的默认值是 4，对应的是一个大约 29° 的锐角。\n" +
+                        "默认情况下，大于这个角的尖角会被保留，而小于这个夹角的就会被「削成平头」。\n\n" +
+                        "默认：\n" +
+                        "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeJoin(Paint.Join.MITER);\n" +
+                        "path.moveTo(0, 60);\n" +
+                        "path.rLineTo(200, 0);\n" +
+                        "path.rLineTo(-150, 80);\n" +
+                        "canvas.drawPath(path, paint)";
+            case 12:
+                return "设置了 setStrokeMiter：\n" +
+                        "paint.setStyle(Paint.Style.STROKE);\n" +
+                        "paint.setStrokeWidth(60);\n" +
+                        "paint.setStrokeJoin(Paint.Join.MITER);\n" +
+                        "paint.setStrokeMiter(6);\n" +
+                        "path.moveTo(0, 60);\n" +
+                        "path.rLineTo(200, 0);\n" +
+                        "path.rLineTo(-150, 80);\n" +
+                        "canvas.drawPath(path, paint)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }

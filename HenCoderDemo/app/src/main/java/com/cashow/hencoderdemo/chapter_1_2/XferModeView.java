@@ -99,4 +99,58 @@ public class XferModeView extends BaseView {
                 canvas.restoreToCount(savedCount);
         }
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "setXfermode(Xfermode xfermode)\n" +
+                        "Xfermode 指的是你要绘制的内容和 Canvas 的目标位置的内容应该怎样结合计算出最终的颜色。\n" +
+                        "但通俗地说，其实就是要你以绘制的内容作为源图像，以 View 中已有的内容作为目标图像，选取一个 PorterDuff.Mode 作为绘制内容的颜色处理方案。\n" +
+                        "\n" +
+                        "PorterDuff.Mode 在 Paint 一共有三处 API ，它们的工作原理都一样，只是用途不同：\n" +
+                        "ComposeShader : 混合两个 Shader\n" +
+                        "PorterDuffColorFilter : 增加一个单身的 ColorFilter\n" +
+                        "Xfermode : 设置绘制内容和 View 中已有内容的混合计算方式\n" +
+                        "\n" +
+                        "Xfermode 使用很简单，不过有两点需要注意：\n" +
+                        "1. 使用离屏缓冲（Off-screen Buffer）\n" +
+                        "要想使用 setXfermode() 正常绘制，必须使用离屏缓存 (Off-screen Buffer) 把内容绘制在额外的层上，再把绘制好的内容贴回 View 中。\n" +
+                        "通过使用离屏缓冲，把要绘制的内容单独绘制在缓冲层， Xfermode 的使用就不会出现奇怪的结果了。使用离屏缓冲有两种方式：\n" +
+                        "  1. Canvas.saveLayer()\n" +
+                        "  saveLayer() 可以做短时的离屏缓冲。使用方法很简单，在绘制代码的前后各加一行代码，在绘制之前保存，绘制之后恢复：\n" +
+                        "  2. View.setLayerType()\n" +
+                        "  View.setLayerType() 是直接把整个 View 都绘制在离屏缓冲中。\n" +
+                        "  setLayerType(LAYER_TYPE_HARDWARE) 是使用 GPU 来缓冲，\n" +
+                        "  setLayerType(LAYER_TYPE_SOFTWARE) 是直接用一个 Bitmap 来缓冲。\n" +
+                        "2. 控制好透明区域\n" +
+                        "使用 Xfermode 来绘制的内容，除了注意使用离屏缓冲，还应该注意控制它的透明区域不要太小，要让它足够覆盖到要和它结合绘制的内容，否则得到的结果很可能不是你想要的。\n" +
+                        "由于透明区域过小而覆盖不到的地方，将不会受到 Xfermode 的影响。\n\n" +
+                        "xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER)\n" +
+                        "canvas.drawBitmap(logoBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(xfermode) // 设置 Xfermode\n" +
+                        "canvas.drawBitmap(testBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(null) // 用完及时清除 Xfermode";
+            case 1:
+                return "xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER)\n" +
+                        "canvas.drawBitmap(logoBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(xfermode) // 设置 Xfermode\n" +
+                        "canvas.drawBitmap(testBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(null) // 用完及时清除 Xfermode";
+            case 2:
+                return "xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER)\n" +
+                        "canvas.drawBitmap(logoBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(xfermode) // 设置 Xfermode\n" +
+                        "canvas.drawBitmap(testBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(null) // 用完及时清除 Xfermode";
+            case 3:
+                return "int savedCount = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);\n" +
+                        "canvas.drawBitmap(logoBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(xfermode) // 设置 Xfermode\n" +
+                        "canvas.drawBitmap(testBitmap, 0, 0, paint)\n" +
+                        "paint.setXfermode(null) // 用完及时清除 Xfermode\n" +
+                        "canvas.restoreToCount(savedCount)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }
