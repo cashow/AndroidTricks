@@ -51,4 +51,15 @@ public class DrawRectView extends BaseView {
          */
         canvas.drawRect(50, 50, 200, 200, paint);
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "drawRect(float left, float top, float right, float bottom, Paint paint)：\nleft, top, right, bottom 是矩形四条边的坐标。\n\npaint.setStyle(Paint.Style.FILL)\ncanvas.drawRect(50, 50, 200, 200, paint)";
+            case 1:
+                return "paint.setStyle(Paint.Style.STROKE)\ncanvas.drawRect(50, 50, 200, 200, paint)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }

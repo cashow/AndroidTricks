@@ -54,14 +54,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             layoutContainer.removeAllViews();
             for (int i = 0; i < viewTypeCount; i++) {
+                ViewGroup infoContainerView = getInfoContainerView();
                 BaseView baseView1 = getBaseView(i);
-                layoutContainer.addView(getInfoView(baseView1.getViewTypeInfo(i)));
-                layoutContainer.addView(baseView1);
+                infoContainerView.addView(getInfoView(baseView1.getViewTypeInfo(i)));
+                infoContainerView.addView(baseView1);
+                layoutContainer.addView(infoContainerView);
             }
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
             throw new RuntimeException("get view failed");
         }
+    }
+
+    private ViewGroup getInfoContainerView() {
+        LinearLayout view = new LinearLayout(context);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(layoutParams);
+        int margin = CommonUtils.dp2px(context, 5);
+        layoutParams.setMargins(2 * margin, margin, 2 * margin, margin);
+        view.setBackgroundColor(getResources().getColor(android.R.color.white));
+        view.setElevation(5);
+        view.setOrientation(LinearLayout.VERTICAL);
+        return view;
     }
 
     protected void addView(View view) {
@@ -91,12 +105,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     private View getInfoView(String info) {
         TextView textView = new TextView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int marginTop = CommonUtils.dp2px(context, 20);
-        int marginBottom = CommonUtils.dp2px(context, 5);
-        int marginLeft = CommonUtils.dp2px(context, 20);
-        int marginRight = CommonUtils.dp2px(context, 20);
+        int marginTop = CommonUtils.dp2px(context, 10);
+        int marginBottom = 0;
+        int marginLeft = CommonUtils.dp2px(context, 10);
+        int marginRight = CommonUtils.dp2px(context, 10);
         params.setMargins(marginLeft, marginTop, marginRight, marginBottom);
-        textView.setMinWidth(CommonUtils.dp2px(context, 100));
         textView.setLayoutParams(params);
         textView.setTextColor(Color.parseColor("#5b4b47"));
         textView.setText(info);
@@ -107,6 +120,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (isAutoAddDemoView()) {
             addDemoView(baseViewClasses[item.getItemId()]);
+            setTitle(item.getTitle());
         }
         return super.onOptionsItemSelected(item);
     }

@@ -67,7 +67,7 @@ public class DrawCircleView extends BaseView {
     public String getViewTypeInfo(int viewType) {
         switch (viewType) {
             case 0:
-                return "canvas.drawCircle(150, 150, 100, paint);";
+                return "drawCircle(float centerX, float centerY, float radius, Paint paint)：\ncenterX centerY 是圆心的坐标，radius 是圆的半径，单位都是像素。\n\ncanvas.drawCircle(150, 150, 100, paint)";
             case 1:
                 return "paint.setColor(Color.RED)";
             case 2:

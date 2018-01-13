@@ -52,4 +52,19 @@ public class DrawOvalView extends BaseView {
          */
         canvas.drawOval(0, 0, 200, 100, paint);
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "drawOval(float left, float top, float right, float bottom, Paint paint)：\n" +
+                        "left, top, right, bottom 是这个椭圆的左、上、右、下四个边界点的坐标\n\n" +
+                        "paint.setStyle(Paint.Style.FILL)\n" +
+                        "canvas.drawOval(0, 0, 200, 100, paint)";
+            case 1:
+                return "paint.setStyle(Paint.Style.STROKE)\n" +
+                        "canvas.drawOval(0, 0, 200, 100, paint)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }

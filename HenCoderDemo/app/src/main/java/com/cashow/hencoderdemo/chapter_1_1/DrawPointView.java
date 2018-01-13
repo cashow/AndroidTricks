@@ -71,4 +71,32 @@ public class DrawPointView extends BaseView {
                 break;
         }
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "drawPoint(float x, float y, Paint paint)：\nx 和 y 是点的坐标。\n点的大小可以通过 paint.setStrokeWidth(width) 来设置。" +
+                        "\n点的形状可以通过 paint.setStrokeCap(cap) 来设置：\nROUND 画出来是圆形的点，SQUARE 或 BUTT 画出来是方形的点。\n\n" +
+                        "paint.setStrokeWidth(20)\n" +
+                        "paint.setStrokeCap(Paint.Cap.ROUND)\n" +
+                        "canvas.drawPoint(50, 50, paint)";
+            case 1:
+                return "paint.setStrokeWidth(20)\n" +
+                        "paint.setStrokeCap(Paint.Cap.SQUARE)\n" +
+                        "canvas.drawPoint(50, 50, paint)";
+            case 2:
+                return "drawPoints(float[] pts, int offset, int count, Paint paint)\n" +
+                        "drawPoints(float[] pts, Paint paint)：\n" +
+                        "pts 这个数组是点的坐标，每两个成一对；\n" +
+                        "offset 表示跳过数组的前几个数再开始记坐标；\n" +
+                        "count 表示一共要绘制几个点。\n\n" +
+                        "paint.setStrokeWidth(20);\n" +
+                        "paint.setStrokeCap(Paint.Cap.SQUARE);\n" +
+                        "float[] points = {0, 0, 50, 50, 50, 100, 100, 50, 100, 100, 150, 50, 150, 100};\n" +
+                        "// 绘制四个点：(50, 50) (50, 100) (100, 50) (100, 100)\n" +
+                        "canvas.drawPoints(points, 2, 8, paint);";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }
