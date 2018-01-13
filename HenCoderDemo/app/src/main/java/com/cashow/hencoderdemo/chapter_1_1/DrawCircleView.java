@@ -62,4 +62,21 @@ public class DrawCircleView extends BaseView {
          */
         canvas.drawCircle(150, 150, 100, paint);
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "canvas.drawCircle(150, 150, 100, paint);";
+            case 1:
+                return "paint.setColor(Color.RED)";
+            case 2:
+                return "paint.setStyle(Paint.Style.STROKE)";
+            case 3:
+                return "paint.setStyle(Paint.Style.STROKE)\npaint.setStrokeWidth(20)";
+            case 4:
+                return "paint.setStyle(Paint.Style.STROKE)\npaint.setAntiAlias(true)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }

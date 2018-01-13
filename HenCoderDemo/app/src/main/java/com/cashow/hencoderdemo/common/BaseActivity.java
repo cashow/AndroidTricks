@@ -1,6 +1,7 @@
 package com.cashow.hencoderdemo.common;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cashow.hencoderdemo.R;
 
@@ -52,7 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             layoutContainer.removeAllViews();
             for (int i = 0; i < viewTypeCount; i++) {
-                layoutContainer.addView(getBaseView(i));
+                BaseView baseView1 = getBaseView(i);
+                layoutContainer.addView(getInfoView(baseView1.getViewTypeInfo(i)));
+                layoutContainer.addView(baseView1);
             }
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
@@ -82,6 +86,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         params.setMargins(margin, margin, margin, margin);
         baseView.setLayoutParams(params);
         return baseView;
+    }
+
+    private View getInfoView(String info) {
+        TextView textView = new TextView(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int marginTop = CommonUtils.dp2px(context, 20);
+        int marginBottom = CommonUtils.dp2px(context, 5);
+        int marginLeft = CommonUtils.dp2px(context, 20);
+        int marginRight = CommonUtils.dp2px(context, 20);
+        params.setMargins(marginLeft, marginTop, marginRight, marginBottom);
+        textView.setMinWidth(CommonUtils.dp2px(context, 100));
+        textView.setLayoutParams(params);
+        textView.setTextColor(Color.parseColor("#5b4b47"));
+        textView.setText(info);
+        return textView;
     }
 
     @Override

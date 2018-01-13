@@ -43,4 +43,8 @@ public abstract class BaseView extends View {
     }
 
     public abstract int getViewTypeCount();
+
+    public String getViewTypeInfo(int viewType) {
+        return "";
+    }
 }

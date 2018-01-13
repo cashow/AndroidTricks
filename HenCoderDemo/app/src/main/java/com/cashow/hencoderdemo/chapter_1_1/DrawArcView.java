@@ -30,15 +30,12 @@ public class DrawArcView extends BaseView {
 
         switch (viewType) {
             case 0:
-                paint.setStyle(Paint.Style.FILL);
-                break;
             case 1:
                 paint.setStyle(Paint.Style.FILL);
                 break;
             case 2:
-                paint.setStyle(Paint.Style.STROKE);
-                break;
             case 3:
+            case 4:
                 paint.setStyle(Paint.Style.STROKE);
                 break;
         }
@@ -46,7 +43,7 @@ public class DrawArcView extends BaseView {
 
     @Override
     public int getViewTypeCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -72,6 +69,9 @@ public class DrawArcView extends BaseView {
                 break;
             case 3:
                 canvas.drawArc(50, 50, 300, 300, -110, 100, false, paint);
+                break;
+            case 4:
+                canvas.drawArc(50, 50, 300, 300, 0, 90, false, paint);
                 break;
         }
     }

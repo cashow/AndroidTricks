@@ -22,5 +22,7 @@
         <activity android:name=".chapter_1_4.Chapter_1_4_Activity" />
         <activity android:name=".chapter_1_5.Chapter_1_5_Activity" />
         <activity android:name=".chapter_1_6.Chapter_1_6_Activity" />
+        <activity android:name=".chapter_1_7.Chapter_1_7_Activity" />
+        <activity android:name=".chapter_1_8.Chapter_1_8_Activity" />
     </application>
 </manifest>

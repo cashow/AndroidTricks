@@ -54,4 +54,21 @@ public class DrawColorView extends BaseView {
                 break;
         }
     }
+
+    @Override
+    public String getViewTypeInfo(int viewType) {
+        switch (viewType) {
+            case 0:
+                return "原图";
+            case 1:
+                return "drawColor(Color.BLACK)";
+            case 2:
+                return "drawColor(Color.parseColor(\"#88880000\"))";
+            case 3:
+                return "drawRGB(100, 200, 100)";
+            case 4:
+                return "drawARGB(100, 100, 200, 100)";
+        }
+        return super.getViewTypeInfo(viewType);
+    }
 }
