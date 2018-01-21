@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * 继承自 FrameLayout 的标签组，添加子 view 时需要计算子 view 的 x，y 坐标
+ */
 public class TagGroup extends FrameLayout {
     // 标签列表
     private List<MyTag> tagList;
