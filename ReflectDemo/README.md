@@ -252,9 +252,9 @@ Field[] getFields()
 // 根据变量名获取 public 成员变量
 Field getField(String name)
 // 获取所有的成员变量
-Field getDeclaredField(String name)
-// 根据变量名获取成员变量
 Field[] getDeclaredFields()
+// 根据变量名获取成员变量
+Field getDeclaredField(String name)
 ```
 
 获取成员变量的 demo：
