@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawTextView extends BaseView {
     private Paint paint;
 
@@ -53,19 +55,22 @@ public class DrawTextView extends BaseView {
         canvas.drawText("hello", 200, 100, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "绘制文字\n" +
-                        "drawText(String text, float x, float y, Paint paint)\n" +
-                        "参数 text 是用来绘制的字符串，x 和 y 是绘制的起点坐标。\n\n" +
-                        "paint.setTextSize(18)\n" +
-                        "canvas.drawText(\"hello\", 200, 100, paint);";
-            case 1:
-                return "paint.setTextSize(36)\n" +
-                        "canvas.drawText(\"hello\", 200, 100, paint);";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * 绘制文字
+     * drawText(String text, float x, float y, Paint paint)
+     * 参数 text 是用来绘制的字符串，x 和 y 是绘制的起点坐标。
+     *
+     * paint.setTextSize(18);
+     * canvas.drawText("hello", 200, 100, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+
+    /**
+     * paint.setTextSize(36);
+     * canvas.drawText("hello", 200, 100, paint);
+     */
+    @Multiline
+    static String INFO_1;
 }

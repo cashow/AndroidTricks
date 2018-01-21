@@ -24,5 +24,10 @@
         <activity android:name=".chapter_1_6.Chapter_1_6_Activity" />
         <activity android:name=".chapter_1_7.Chapter_1_7_Activity" />
         <activity android:name=".chapter_1_8.Chapter_1_8_Activity" />
+        <activity android:name=".chapter_2_1.Chapter_2_1_Activity" />
+        <activity android:name=".chapter_2_2.Chapter_2_2_Activity" />
+        <activity android:name=".chapter_2_3.Chapter_2_3_Activity" />
+        <activity android:name=".chapter_2_practice.Chapter_2_Practice_Activity" />
+        <activity android:name=".chapter_1_practice.Chapter_1_Practice_Activity" />
     </application>
 </manifest>

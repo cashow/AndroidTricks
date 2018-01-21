@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawCircleView extends BaseView {
     private Paint paint;
 
@@ -63,20 +65,38 @@ public class DrawCircleView extends BaseView {
         canvas.drawCircle(150, 150, 100, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawCircle(float centerX, float centerY, float radius, Paint paint)：\ncenterX centerY 是圆心的坐标，radius 是圆的半径，单位都是像素。\n\ncanvas.drawCircle(150, 150, 100, paint)";
-            case 1:
-                return "paint.setColor(Color.RED)";
-            case 2:
-                return "paint.setStyle(Paint.Style.STROKE)";
-            case 3:
-                return "paint.setStyle(Paint.Style.STROKE)\npaint.setStrokeWidth(20)";
-            case 4:
-                return "paint.setStyle(Paint.Style.STROKE)\npaint.setAntiAlias(true)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawCircle(float centerX, float centerY, float radius, Paint paint)：
+     * centerX centerY 是圆心的坐标，radius 是圆的半径，单位都是像素。
+     *
+     * canvas.drawCircle(150, 150, 100, paint)
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setColor(Color.RED);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * paint.setStrokeWidth(20);
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * paint.setAntiAlias(true);
+     */
+    @Multiline
+    static String INFO_4;
 }

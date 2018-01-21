@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawLineView extends BaseView {
     private Paint paint;
 
@@ -52,20 +54,23 @@ public class DrawLineView extends BaseView {
         }
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawLine(float startX, float startY, float stopX, float stopY, Paint paint)：\n" +
-                        "startX, startY, stopX, stopY 分别是线的起点和终点坐标\n\n" +
-                        "canvas.drawLine(0, 0, 200, 200, paint)";
-            case 1:
-                return "drawLines(float[] pts, int offset, int count, Paint paint)\n" +
-                        "drawLines(float[] pts, Paint paint)：" +
-                        "画线（批量）\n\n" +
-                        "float[] points = {0, 0, 200, 200, 200, 200, 0, 0, 0, 100, 200, 100, 100, 0, 100, 200, 200, 0, 0, 200}\n" +
-                        "canvas.drawLines(points, paint)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawLine(float startX, float startY, float stopX, float stopY, Paint paint)：
+     * startX, startY, stopX, stopY 分别是线的起点和终点坐标
+     *
+     * canvas.drawLine(0, 0, 200, 200, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * drawLines(float[] pts, int offset, int count, Paint paint)
+     * drawLines(float[] pts, Paint paint)：
+     * 画线（批量）
+     *
+     * float[] points = {0, 0, 200, 200, 200, 200, 0, 0, 0, 100, 200, 100, 100, 0, 100, 200, 200, 0, 0, 200}
+     * canvas.drawLines(points, paint)
+     */
+    @Multiline
+    static String INFO_1;
 }

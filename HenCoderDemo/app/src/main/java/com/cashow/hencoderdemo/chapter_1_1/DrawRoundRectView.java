@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawRoundRectView extends BaseView {
     private Paint paint;
 
@@ -52,18 +54,20 @@ public class DrawRoundRectView extends BaseView {
         canvas.drawRoundRect(50, 50, 300, 200, 50, 50, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawRoundRect(float left, float top, float right, float bottom, float rx, float ry, Paint paint)：\n" +
-                        "left, top, right, bottom 是四条边的坐标，rx 和 ry 是圆角的横向半径和纵向半径。\n\n" +
-                        "paint.setStyle(Paint.Style.FILL)\n" +
-                        "canvas.drawRoundRect(50, 50, 300, 200, 50, 50, paint)";
-            case 1:
-                return "paint.setStyle(Paint.Style.STROKE)\n" +
-                        "canvas.drawRoundRect(50, 50, 300, 200, 50, 50, paint)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawRoundRect(float left, float top, float right, float bottom, float rx, float ry, Paint paint)：
+     * left, top, right, bottom 是四条边的坐标，rx 和 ry 是圆角的横向半径和纵向半径。
+     *
+     * paint.setStyle(Paint.Style.FILL);
+     * canvas.drawRoundRect(50, 50, 300, 200, 50, 50, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawRoundRect(50, 50, 300, 200, 50, 50, paint);
+     */
+    @Multiline
+    static String INFO_1;
 }

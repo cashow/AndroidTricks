@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawRectView extends BaseView {
     private Paint paint;
 
@@ -52,14 +54,20 @@ public class DrawRectView extends BaseView {
         canvas.drawRect(50, 50, 200, 200, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawRect(float left, float top, float right, float bottom, Paint paint)：\nleft, top, right, bottom 是矩形四条边的坐标。\n\npaint.setStyle(Paint.Style.FILL)\ncanvas.drawRect(50, 50, 200, 200, paint)";
-            case 1:
-                return "paint.setStyle(Paint.Style.STROKE)\ncanvas.drawRect(50, 50, 200, 200, paint)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawRect(float left, float top, float right, float bottom, Paint paint)：
+     * left, top, right, bottom 是矩形四条边的坐标。
+     *
+     * paint.setStyle(Paint.Style.FILL);
+     * canvas.drawRect(50, 50, 200, 200, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawRect(50, 50, 200, 200, paint);
+     */
+    @Multiline
+    static String INFO_1;
 }

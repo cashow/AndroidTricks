@@ -2,13 +2,14 @@ package com.cashow.hencoderdemo.chapter_1_4;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 import com.cashow.hencoderdemo.common.BitmapUtils;
+
+import org.adrianwalker.multilinestring.Multiline;
 
 public class CanvasTransformationView extends BaseView {
     private Paint paint;
@@ -111,4 +112,103 @@ public class CanvasTransformationView extends BaseView {
         }
         canvas.restore();
     }
+
+    /**
+     * 使用 Canvas 来做常见的二维变换：
+     *
+     * 原图：
+     * canvas.save();
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * 平移
+     * Canvas.translate(float dx, float dy)
+     * 参数里的 dx 和 dy 表示横向和纵向的位移。
+     *
+     * canvas.save();
+     * canvas.translate(50, 50);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * 旋转
+     * Canvas.rotate(float degrees, float px, float py)
+     * 参数里的 degrees 是旋转角度，单位是度（也就是一周有 360° 的那个单位），方向是顺时针为正向；  px 和 py 是轴心的位置。
+     *
+     * canvas.save();
+     * canvas.rotate(90, logoBitmap.getWidth() / 2, logoBitmap.getHeight() / 2);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * 放缩
+     * Canvas.scale(float sx, float sy, float px, float py)
+     * 参数里的 sx sy 是横向和纵向的放缩倍数； px py 是放缩的轴心。
+     *
+     * canvas.save();
+     * canvas.scale(0.5f, 0.5f, logoBitmap.getWidth() / 2, logoBitmap.getHeight() / 2);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * canvas.save();
+     * canvas.scale(0.5f, 0.5f, 50, 50);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_4;
+
+    /**
+     * 错切
+     * skew(float sx, float sy)
+     * 参数里的 sx 和 sy 是 x 方向和 y 方向的错切系数。
+     *
+     * canvas.save();
+     * canvas.skew(-0.5f, 0f);
+     * canvas.drawBitmap(logoBitmap, 100, 100, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_5;
+
+    /**
+     * canvas.save();
+     * canvas.skew(0.5f, 0f);
+     * canvas.drawBitmap(logoBitmap, 100, 100, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_6;
+
+    /**
+     * canvas.save();
+     * canvas.skew(0f, 0.5f);
+     * canvas.drawBitmap(logoBitmap, 100, 100, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_7;
+
+    /**
+     * canvas.save();
+     * canvas.skew(0f, -0.5f);
+     * canvas.drawBitmap(logoBitmap, 100, 100, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_8;
 }

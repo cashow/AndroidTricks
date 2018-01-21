@@ -14,6 +14,8 @@ import com.cashow.hencoderdemo.R;
 import com.cashow.hencoderdemo.common.BaseView;
 import com.cashow.hencoderdemo.common.BitmapUtils;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class MaskFilterView extends BaseView {
     private Paint paint;
     private Bitmap bitmap;
@@ -90,41 +92,60 @@ public class MaskFilterView extends BaseView {
         canvas.drawBitmap(bitmap, 50, 50, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "为之后的绘制设置 MaskFilter\n" +
-                        "setMaskFilter(MaskFilter maskfilter)\n" +
-                        "setMaskFilter 设置的是在绘制层上方的附加效果\n" +
-                        "MaskFilter 有两种： BlurMaskFilter 和 EmbossMaskFilter。\n" +
-                        "\n" +
-                        "模糊效果的 MaskFilter\n" +
-                        "BlurMaskFilter(float radius, BlurMaskFilter.Blur style)\n" +
-                        "radius 参数是模糊的范围，\n" +
-                        "style 是模糊的类型。一共有四种：\n" +
-                        "NORMAL: 内外都模糊绘制\n" +
-                        "SOLID: 内部正常绘制，外部模糊\n" +
-                        "INNER: 内部模糊，外部不绘制\n" +
-                        "OUTER: 内部不绘制，外部模糊\n\n" +
-                        "原图：";
-            case 1:
-                return "paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.NORMAL));";
-            case 2:
-                return "paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.SOLID));";
-            case 3:
-                return "paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.INNER));";
-            case 4:
-                return "paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.OUTER));";
-            case 5:
-                return "浮雕效果的 MaskFilter\n" +
-                        "EmbossMaskFilter(float[] direction, float ambient, float specular, float blurRadius)\n" +
-                        "direction 是一个 3 个元素的数组，指定了光源的方向；\n" +
-                        "ambient 是环境光的强度，数值范围是 0 到 1；\n" +
-                        "specular 是炫光的系数；\n" +
-                        "blurRadius 是应用光线的范围。\n\n" +
-                        "paint.setMaskFilter(new EmbossMaskFilter(new float[]{0.0f, 0.5f, 1.0f}, 0.2f, 8, 10));";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * 为之后的绘制设置 MaskFilter
+     * setMaskFilter(MaskFilter maskfilter)
+     * setMaskFilter 设置的是在绘制层上方的附加效果
+     * MaskFilter 有两种： BlurMaskFilter 和 EmbossMaskFilter。
+     *
+     * 模糊效果的 MaskFilter
+     * BlurMaskFilter(float radius, BlurMaskFilter.Blur style)
+     * radius 参数是模糊的范围，
+     * style 是模糊的类型。一共有四种：
+     * NORMAL: 内外都模糊绘制
+     * SOLID: 内部正常绘制，外部模糊
+     * INNER: 内部模糊，外部不绘制
+     * OUTER: 内部不绘制，外部模糊
+     *
+     * 原图：
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.NORMAL));
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.SOLID));
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.INNER));
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * paint.setMaskFilter(new BlurMaskFilter(100, BlurMaskFilter.Blur.OUTER));
+     */
+    @Multiline
+    static String INFO_4;
+
+    /**
+     * 浮雕效果的 MaskFilter
+     * EmbossMaskFilter(float[] direction, float ambient, float specular, float blurRadius)
+     * direction 是一个 3 个元素的数组，指定了光源的方向；
+     * ambient 是环境光的强度，数值范围是 0 到 1；
+     * specular 是炫光的系数；
+     * blurRadius 是应用光线的范围。
+     *
+     * paint.setMaskFilter(new EmbossMaskFilter(new float[]{0.0f, 0.5f, 1.0f}, 0.2f, 8, 10));
+     */
+    @Multiline
+    static String INFO_5;
 }

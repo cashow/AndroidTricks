@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawBitmapView extends BaseView {
     private Paint paint;
 
@@ -45,11 +47,13 @@ public class DrawBitmapView extends BaseView {
         canvas.drawBitmap(logoBitmap, 0, 0, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        return "画 Bitmap\n" +
-                "drawBitmap(Bitmap bitmap, float left, float top, Paint paint)\n" +
-                "left 和 top 是要把 bitmap 绘制到的位置坐标\n\n" +
-                "canvas.drawBitmap(logoBitmap, 0, 0, paint)";
-    }
+    /**
+     * 画 Bitmap
+     * drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
+     * left 和 top 是要把 bitmap 绘制到的位置坐标
+     *
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     */
+    @Multiline
+    static String INFO_0;
 }

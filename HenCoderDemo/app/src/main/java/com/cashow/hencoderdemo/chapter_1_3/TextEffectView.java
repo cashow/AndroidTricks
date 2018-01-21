@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 import java.util.Locale;
 
 public class TextEffectView extends BaseView {
@@ -176,4 +178,151 @@ public class TextEffectView extends BaseView {
                 break;
         }
     }
+
+    /**
+     * 设置文字大小
+     * setTextSize(float textSize)
+     *
+     * paint.setTextSize(40);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * 设置字体
+     * setTypeface(Typeface typeface)
+     *
+     * paint.setTextSize(80);
+     * paint.setTypeface(Typeface.DEFAULT);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * paint.setTypeface(Typeface.SERIF);
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * paint.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "RobotoCondensed-BoldItalic.ttf"));
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * 是否使用伪粗体
+     * setFakeBoldText(boolean fakeBoldText)
+     * 之所以叫伪粗体（ fake bold ），因为它并不是通过选用更高 weight 的字体让文字变粗，而是通过程序在运行时把文字给「描粗」了。
+     *
+     * paint.setFakeBoldText(true);
+     */
+    @Multiline
+    static String INFO_4;
+
+    /**
+     * 是否加删除线
+     * setStrikeThruText(boolean strikeThruText)
+     * "paint.setStrikeThruText(true);
+     */
+    @Multiline
+    static String INFO_5;
+
+    /**
+     * 是否加下划线
+     * setUnderlineText(boolean underlineText)
+     *
+     * paint.setUnderlineText(true);
+     */
+    @Multiline
+    static String INFO_6;
+
+    /**
+     * 设置文字横向错切角度。其实就是文字倾斜度
+     * setTextSkewX(float skewX)
+     * paint.setTextSkewX(-0.5f);
+     */
+    @Multiline
+    static String INFO_7;
+
+    /**
+     * 设置文字横向放缩
+     * setTextScaleX(float scaleX)
+     *
+     * paint.setTextScaleX(1.5f);
+     */
+    @Multiline
+    static String INFO_8;
+
+    /**
+     * 设置字符间距。默认值是 0
+     * setLetterSpacing(float letterSpacing)
+     *
+     * paint.setLetterSpacing(0.3f);
+     */
+    @Multiline
+    static String INFO_9;
+
+    /**
+     * 用 CSS 的 font-feature-settings 的方式来设置文字
+     * setFontFeatureSettings(String settings)
+     *
+     * paint.setFontFeatureSettings("smcp");
+     */
+    @Multiline
+    static String INFO_10;
+
+    /**
+     * 设置文字的对齐方式
+     * setTextAlign(Paint.Align align)
+     * 一共有三个值：LEFT CETNER 和 RIGHT。默认值为 LEFT
+     * LEFT 时文字绘制在 (x, y) 的右边
+     * CETNER 时文字的中心和 (x, y) 的中心对齐
+     * RIGHT 时文字绘制在 (x, y) 的左侧
+     *
+     * paint.setTextAlign(Paint.Align.LEFT);
+     */
+    @Multiline
+    static String INFO_11;
+
+    /**
+     * paint.setTextAlign(Paint.Align.CENTER);
+     */
+    @Multiline
+    static String INFO_12;
+
+    /**
+     * paint.setTextAlign(Paint.Align.RIGHT);
+     */
+    @Multiline
+    static String INFO_13;
+
+    /**
+     * 设置绘制所使用的 Locale
+     * setTextLocale(Locale locale)
+     * setTextLocales(LocaleList locales)
+     * Locale 直译是「地域」，其实就是你在系统里设置的「语言」或「语言区域」，比如「简体中文（中国）」「English (US)」「English (UK)」。
+     * 有些同源的语言，在文化发展过程中对一些相同的字衍生出了不同的写法
+     * （比如中国大陆和日本对于某些汉字的写法就有细微差别。注意，不是繁体和简体这种同音同义不同字，而真的是同样的一个字有两种写法）。
+     * 系统语言不同，同样的一个字的显示就有可能不同。
+     * 由于 Android 7.0 ( API v24) 加入了多语言区域的支持，所以在 API v24 以及更高版本上，还可以使用 setTextLocales(LocaleList locales) 来为绘制设置多个语言区域。" +
+     * paint.setTextSize(60);
+     * paint.setTextLocale(Locale.CHINA);
+     */
+    @Multiline
+    static String INFO_14;
+
+    /**
+     * paint.setTextSize(60);
+     * paint.setTextLocale(Locale.TAIWAN);
+     */
+    @Multiline
+    static String INFO_15;
+
+    /**
+     * paint.setTextSize(60);
+     * paint.setTextLocale(Locale.JAPAN);
+     */
+    @Multiline
+    static String INFO_16;
 }

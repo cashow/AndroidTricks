@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import com.cashow.hencoderdemo.common.BaseView;
 import com.cashow.hencoderdemo.common.BitmapUtils;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class MatrixTransformationView extends BaseView {
     private Paint paint;
     private Matrix matrix;
@@ -119,4 +121,80 @@ public class MatrixTransformationView extends BaseView {
         }
         canvas.restore();
     }
+
+    /**
+     * Matrix 做常见变换的方式：
+     * 1. 创建 Matrix 对象；
+     * 2. 调用 Matrix 的 pre/postTranslate/Rotate/Scale/Skew() 方法来设置几何变换；
+     * 3. 使用 Canvas.setMatrix(matrix) 或 Canvas.concat(matrix) 来把几何变换应用到 Canvas。
+     *
+     * 把 Matrix 应用到 Canvas 有两个方法： Canvas.setMatrix(matrix) 和 Canvas.concat(matrix)。
+     * Canvas.setMatrix(matrix)：用 Matrix 直接替换 Canvas 当前的变换矩阵，即抛弃 Canvas 当前的变换，改用 Matrix 的变换
+     * （注：不同的系统中 setMatrix(matrix) 的行为可能不一致，所以还是尽量用 concat(matrix) 吧）；
+     * Canvas.concat(matrix)：用 Canvas 当前的变换矩阵和 Matrix 相乘，即基于 Canvas 当前的变换，叠加上 Matrix 中的变换。
+     *
+     * canvas.save();
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * canvas.save();
+     * matrix.postTranslate(50, 50);
+     * canvas.setMatrix(matrix);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * canvas.save();
+     * matrix.postRotate(90, logoWidth / 2, logoHeight / 2);
+     * canvas.setMatrix(matrix);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * canvas.save();
+     * matrix.postScale(0.5f, 0.5f, logoWidth / 2, logoHeight / 2);
+     * canvas.setMatrix(matrix);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * canvas.save();
+     * matrix.postSkew(-0.5f, 0f);
+     * canvas.setMatrix(matrix);
+     * canvas.drawBitmap(logoBitmap, 100, 100, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_4;
+
+    /**
+     * 用点对点映射的方式设置变换
+     * Matrix.setPolyToPoly(float[] src, int srcIndex, float[] dst, int dstIndex, int pointCount)
+     * src 和 dst 是源点集合目标点集；srcIndex 和 dstIndex 是第一个点的偏移；pointCount 是采集的点的个数（个数不能大于 4，因为大于 4 个点就无法计算变换了）。
+     * poly 就是「多」的意思。setPolyToPoly() 的作用是通过多点的映射的方式来直接设置变换。
+     * 「多点映射」的意思就是把指定的点移动到给出的位置，从而发生形变。
+     * 例如：(0, 0) -> (100, 100) 表示把 (0, 0) 位置的像素移动到 (100, 100) 的位置，这个是单点的映射，单点映射可以实现平移。
+     * 而多点的映射，就可以让绘制内容任意地扭曲。
+     *
+     * canvas.save();
+     * matrix.setPolyToPoly(src, 0, dst, 0, src.length / 2);
+     * canvas.setMatrix(matrix);
+     * canvas.drawBitmap(logoBitmap, 0, 0, paint);
+     * canvas.restore();
+     */
+    @Multiline
+    static String INFO_5;
 }

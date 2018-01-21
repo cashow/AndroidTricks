@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class PaintInitView extends BaseView {
     private Paint paint;
     private Path path;
@@ -85,33 +87,45 @@ public class PaintInitView extends BaseView {
         canvas.drawPath(path, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "原图：\n";
-            case 1:
-                return "reset()\n" +
-                        "重置 Paint 的所有属性为默认值。相当于重新 new 一个，不过性能当然高一些啦。\n\n" +
-                        "paint.reset();\n" +
-                        "paint.setStyle(Paint.Style.STROKE);\n" +
-                        "paint.setStrokeWidth(10);";
-            case 2:
-                return "set(Paint src)\n" +
-                        "把 src 的所有属性全部复制过来。相当于调用 src 所有的 get 方法，然后调用这个 Paint 的对应的  set 方法来设置它们。\n\n" +
-                        "Paint newPaint = new Paint();\n" +
-                        "newPaint.setStyle(Paint.Style.STROKE);\n" +
-                        "newPaint.setStrokeWidth(15);\n" +
-                        "paint.set(newPaint);";
-            case 3:
-                return "setFlags(int flags)\n" +
-                        "批量设置 flags。相当于依次调用它们的 set 方法。\n" +
-                        "paint.setFlags(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);  相当于\n" +
-                        "paint.setAntiAlias(true);\n" +
-                        "paint.setDither(true);\n" +
-                        "setFlags(flags) 对应的 get 方法是 int getFlags()。\n\n" +
-                        "paint.setFlags(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * 原图：
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * reset()
+     * 重置 Paint 的所有属性为默认值。相当于重新 new 一个，不过性能当然高一些啦。
+     *
+     * paint.reset();
+     * paint.setStyle(Paint.Style.STROKE);
+     * paint.setStrokeWidth(10);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * set(Paint src)
+     * 把 src 的所有属性全部复制过来。相当于调用 src 所有的 get 方法，然后调用这个 Paint 的对应的  set 方法来设置它们。
+     *
+     * Paint newPaint = new Paint();
+     * newPaint.setStyle(Paint.Style.STROKE);
+     * newPaint.setStrokeWidth(15);
+     * paint.set(newPaint);
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * setFlags(int flags)
+     * 批量设置 flags。相当于依次调用它们的 set 方法。
+     * paint.setFlags(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);  相当于
+     * paint.setAntiAlias(true);
+     * paint.setDither(true);
+     * setFlags(flags) 对应的 get 方法是 int getFlags()。
+     *
+     * paint.setFlags(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+     */
+    @Multiline
+    static String INFO_3;
 }

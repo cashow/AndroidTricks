@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawArcView extends BaseView {
     private Paint paint;
 
@@ -76,30 +78,44 @@ public class DrawArcView extends BaseView {
         }
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawArc(float left, float top, float right, float bottom, float startAngle, float sweepAngle, boolean useCenter, Paint paint)：\n" +
-                        "left, top, right, bottom 描述的是这个弧形所在的椭圆；\n" +
-                        "startAngle 是弧形的起始角度（x 轴的正向，即正右的方向，是 0 度的位置；顺时针为正角度，逆时针为负角度）；\n" +
-                        "sweepAngle 是弧形划过的角度；\n" +
-                        "useCenter 表示是否连接到圆心，如果不连接到圆心，就是弧形，如果连接到圆心，就是扇形。\n\n" +
-                        "paint.setStyle(Paint.Style.FILL)\n" +
-                        "canvas.drawArc(50, 50, 300, 300, -110, 100, true, paint)";
-            case 1:
-                return "paint.setStyle(Paint.Style.FILL)\n" +
-                        "canvas.drawArc(50, 50, 300, 300, -110, 100, false, paint)";
-            case 2:
-                return "paint.setStyle(Paint.Style.STROKE)\n" +
-                        "canvas.drawArc(50, 50, 300, 300, -110, 100, true, paint)";
-            case 3:
-                return "paint.setStyle(Paint.Style.STROKE)\n" +
-                        "canvas.drawArc(50, 50, 300, 300, -110, 100, false, paint)";
-            case 4:
-                return "paint.setStyle(Paint.Style.STROKE)\n" +
-                        "canvas.drawArc(50, 50, 300, 300, 0, 90, false, paint)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawArc(float left, float top, float right, float bottom, float startAngle, float sweepAngle, boolean useCenter, Paint paint)：
+     * left, top, right, bottom 描述的是这个弧形所在的椭圆；
+     * startAngle 是弧形的起始角度（x 轴的正向，即正右的方向，是 0 度的位置；顺时针为正角度，逆时针为负角度）；
+     * sweepAngle 是弧形划过的角度；
+     * useCenter 表示是否连接到圆心，如果不连接到圆心，就是弧形，如果连接到圆心，就是扇形。
+     *
+     * paint.setStyle(Paint.Style.FILL);
+     * canvas.drawArc(50, 50, 300, 300, -110, 100, true, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setStyle(Paint.Style.FILL);
+     * canvas.drawArc(50, 50, 300, 300, -110, 100, false, paint);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawArc(50, 50, 300, 300, -110, 100, true, paint);
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawArc(50, 50, 300, 300, -110, 100, false, paint);
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawArc(50, 50, 300, 300, 0, 90, false, paint);
+     */
+    @Multiline
+    static String INFO_4;
 }

@@ -16,6 +16,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class PaintPathEffectView extends BaseView {
     private Paint paint;
     private Path path;
@@ -183,107 +185,155 @@ public class PaintPathEffectView extends BaseView {
         }
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "setPathEffect(PathEffect effect)\n" +
-                        "使用 PathEffect 来给图形的轮廓设置效果。对 Canvas 所有的图形绘制有效，也就是 drawLine()、drawCircle()、drawPath() 这些方法。\n" +
-                        "注意： PathEffect 在有些情况下不支持硬件加速，需要关闭硬件加速才能正常使用：\n" +
-                        "1. Canvas.drawLine() 和 Canvas.drawLines() 方法画直线时，setPathEffect() 是不支持硬件加速的；\n" +
-                        "2. PathDashPathEffect 对硬件加速的支持也有问题，所以当使用 PathDashPathEffect 的时候，最好也把硬件加速关了。\n\n" +
-                        "原图";
-            case 1:
-                return "把所有拐角变成圆角\n" +
-                        "CornerPathEffect(float radius)\n" +
-                        "radius 是圆角的半径\n\n" +
-                        "PathEffect cornerPathEffect = new CornerPathEffect(20);\n" +
-                        "paint.setPathEffect(cornerPathEffect);";
-            case 2:
-                return "把线条进行随机的偏离\n" +
-                        "DiscretePathEffect(float segmentLength, float deviation)\n" +
-                        "DiscretePathEffect 具体的做法是，把绘制改为使用定长的线段来拼接，并且在拼接的时候对路径进行随机偏离。\n" +
-                        "segmentLength 是用来拼接的每个线段的长度，\n" +
-                        "deviation 是偏离量。\n\n" +
-                        "PathEffect discretePathEffect1 = new DiscretePathEffect(20, 5);\n" +
-                        "paint.setPathEffect(discretePathEffect1);";
-            case 3:
-                return "PathEffect discretePathEffect2 = new DiscretePathEffect(5, 5);\n" +
-                        "paint.setPathEffect(discretePathEffect2);";
-            case 4:
-                return "PathEffect discretePathEffect3 = new DiscretePathEffect(5, 15);\n" +
-                        "paint.setPathEffect(discretePathEffect3);";
-            case 5:
-                return "使用虚线来绘制线条\n" +
-                        "DashPathEffect(float[] intervals, float phase)\n" +
-                        "第一个参数 intervals 是一个数组，它指定了虚线的格式：\n" +
-                        "数组中元素必须为偶数（最少是 2 个），按照「画线长度、空白长度、画线长度、空白长度」……的顺序排列，\n" +
-                        "例如上面代码中的 20, 5, 10, 5 就表示虚线是按照「画 20 像素、空 5 像素、画 10 像素、空 5 像素」的模式来绘制；\n" +
-                        "第二个参数 phase 是虚线的偏移量。\n\n" +
-                        "PathEffect dashPathEffect1 = new DashPathEffect(new float[]{20, 10, 20, 5}, 0);\n" +
-                        "paint.setPathEffect(dashPathEffect1);";
-            case 6:
-                return "PathEffect dashPathEffect2 = new DashPathEffect(new float[]{20, 10, 20, 5}, 10);\n" +
-                        "paint.setPathEffect(dashPathEffect2);";
-            case 7:
-                return "使用一个 Path 来绘制虚线\n" +
-                        "PathDashPathEffect(Path shape, float advance, float phase, PathDashPathEffect.Style style)\n" +
-                        "shape 参数是用来绘制的 Path ；\n" +
-                        "advance 是两个相邻的 shape 段之间的间隔，不过注意，这个间隔是两个 shape 段的起点的间隔，而不是前一个的终点和后一个的起点的距离；\n" +
-                        "phase 和  DashPathEffect 中一样，是虚线的偏移；\n" +
-                        "style，是用来指定拐弯改变的时候 shape 的转换方式。style 的类型为 PathDashPathEffect.Style ，是一个 enum ，具体有三个值：\n" +
-                        "TRANSLATE：位移\n" +
-                        "ROTATE：旋转\n" +
-                        "MORPH：变体\n\n" +
-                        "Path dashPath1 = new Path();\n" +
-                        "dashPath1.rLineTo(dashWidth, 0);\n" +
-                        "dashPath1.rLineTo(-dashWidth / 2, dashWidth);\n" +
-                        "dashPath1.rLineTo(-dashWidth / 2, -dashWidth);\n" +
-                        "path = new Path();\n" +
-                        "path.addOval(0, 0, 250, 200, Path.Direction.CW);\n" +
-                        "PathEffect pathDashPathEffect1 = new PathDashPathEffect(dashPath1, 40, 0, PathDashPathEffect.Style.TRANSLATE);\n" +
-                        "paint.setPathEffect(pathDashPathEffect1);";
-            case 8:
-                return "Path dashPath2 = new Path();\n" +
-                        "dashPath2.rLineTo(dashWidth, 0);\n" +
-                        "dashPath2.rLineTo(-dashWidth / 2, dashWidth);\n" +
-                        "dashPath2.rLineTo(-dashWidth / 2, -dashWidth);\n" +
-                        "path = new Path();\n" +
-                        "path.addOval(0, 0, 250, 200, Path.Direction.CW);\n" +
-                        "PathEffect pathDashPathEffect2 = new PathDashPathEffect(dashPath2, 40, 0, PathDashPathEffect.Style.ROTATE);\n" +
-                        "paint.setPathEffect(pathDashPathEffect2);";
-            case 9:
-                return "Path dashPath3 = new Path();\n" +
-                        "dashPath3.rLineTo(dashWidth, 0);\n" +
-                        "dashPath3.rLineTo(-dashWidth / 2, dashWidth);\n" +
-                        "dashPath3.rLineTo(-dashWidth / 2, -dashWidth);\n" +
-                        "path = new Path();\n" +
-                        "path.addOval(0, 0, 250, 200, Path.Direction.CW);\n" +
-                        "PathEffect pathDashPathEffect3 = new PathDashPathEffect(dashPath3, 40, 0, PathDashPathEffect.Style.MORPH);\n" +
-                        "paint.setPathEffect(pathDashPathEffect3);";
-            case 10:
-                return "组合效果类的 PathEffect\n" +
-                        "ComposePathEffect\n" +
-                        "ComposePathEffect(PathEffect outerpe, PathEffect innerpe)\n" +
-                        "先对目标 Path 使用一个 PathEffect，然后再对这个改变后的 Path 使用另一个 PathEffect。\n" +
-                        "innerpe 是先应用的， outerpe 是后应用的。\n\n" +
-                        "PathEffect pathEffect1 = new DashPathEffect(new float[]{20, 10, 20, 5}, 10);\n" +
-                        "PathEffect pathEffect2 = new DiscretePathEffect(20, 5);\n" +
-                        "PathEffect composePathEffect = new ComposePathEffect(pathEffect1, pathEffect2);\n" +
-                        "paint.setPathEffect(composePathEffect);";
-            case 11:
-                return "在之后的绘制内容下面加一层阴影\n" +
-                        "setShadowLayer(float radius, float dx, float dy, int shadowColor)\n" +
-                        "radius 是阴影的模糊范围；\n" +
-                        "dx dy 是阴影的偏移量；\n" +
-                        "shadowColor 是阴影的颜色。\n" +
-                        "如果要清除阴影层，使用 clearShadowLayer() 。\n" +
-                        "在硬件加速开启的情况下， setShadowLayer() 只支持文字的绘制，文字之外的绘制必须关闭硬件加速才能正常绘制阴影。\n" +
-                        "如果 shadowColor 是半透明的，阴影的透明度就使用 shadowColor 自己的透明度；而如果  shadowColor 是不透明的，阴影的透明度就使用 paint 的透明度。\n\n" +
-                        "paint = new Paint();\n" +
-                        "paint.setTextSize(60);\n" +
-                        "paint.setShadowLayer(10, 0, 0, Color.RED);";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * setPathEffect(PathEffect effect)
+     * 使用 PathEffect 来给图形的轮廓设置效果。对 Canvas 所有的图形绘制有效，也就是 drawLine()、drawCircle()、drawPath() 这些方法。
+     * 注意： PathEffect 在有些情况下不支持硬件加速，需要关闭硬件加速才能正常使用：
+     * 1. Canvas.drawLine() 和 Canvas.drawLines() 方法画直线时，setPathEffect() 是不支持硬件加速的；
+     * 2. PathDashPathEffect 对硬件加速的支持也有问题，所以当使用 PathDashPathEffect 的时候，最好也把硬件加速关了。
+     *
+     * 原图
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * 把所有拐角变成圆角
+     * CornerPathEffect(float radius)
+     * radius 是圆角的半径
+     *
+     * PathEffect cornerPathEffect = new CornerPathEffect(20);
+     * paint.setPathEffect(cornerPathEffect);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * 把线条进行随机的偏离
+     * DiscretePathEffect(float segmentLength, float deviation)
+     * DiscretePathEffect 具体的做法是，把绘制改为使用定长的线段来拼接，并且在拼接的时候对路径进行随机偏离。
+     * segmentLength 是用来拼接的每个线段的长度，
+     * deviation 是偏离量。
+     *
+     * PathEffect discretePathEffect1 = new DiscretePathEffect(20, 5);
+     * paint.setPathEffect(discretePathEffect1);
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * PathEffect discretePathEffect2 = new DiscretePathEffect(5, 5);
+     * paint.setPathEffect(discretePathEffect2);
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * PathEffect discretePathEffect3 = new DiscretePathEffect(5, 15);
+     * paint.setPathEffect(discretePathEffect3);
+     */
+    @Multiline
+    static String INFO_4;
+
+    /**
+     * 使用虚线来绘制线条
+     * DashPathEffect(float[] intervals, float phase)
+     * 第一个参数 intervals 是一个数组，它指定了虚线的格式：
+     * 数组中元素必须为偶数（最少是 2 个），按照「画线长度、空白长度、画线长度、空白长度」……的顺序排列，
+     * 例如上面代码中的 20, 5, 10, 5 就表示虚线是按照「画 20 像素、空 5 像素、画 10 像素、空 5 像素」的模式来绘制；
+     * 第二个参数 phase 是虚线的偏移量。
+     *
+     * PathEffect dashPathEffect1 = new DashPathEffect(new float[]{20, 10, 20, 5}, 0);
+     * paint.setPathEffect(dashPathEffect1);
+     */
+    @Multiline
+    static String INFO_5;
+
+    /**
+     * PathEffect dashPathEffect2 = new DashPathEffect(new float[]{20, 10, 20, 5}, 10);
+     * paint.setPathEffect(dashPathEffect2);
+     */
+    @Multiline
+    static String INFO_6;
+
+    /**
+     * 使用一个 Path 来绘制虚线
+     * PathDashPathEffect(Path shape, float advance, float phase, PathDashPathEffect.Style style)
+     * shape 参数是用来绘制的 Path ；
+     * advance 是两个相邻的 shape 段之间的间隔，不过注意，这个间隔是两个 shape 段的起点的间隔，而不是前一个的终点和后一个的起点的距离；
+     * phase 和  DashPathEffect 中一样，是虚线的偏移；
+     * style，是用来指定拐弯改变的时候 shape 的转换方式。style 的类型为 PathDashPathEffect.Style ，是一个 enum ，具体有三个值：
+     * TRANSLATE：位移
+     * ROTATE：旋转
+     * MORPH：变体
+     *
+     * Path dashPath1 = new Path();
+     * dashPath1.rLineTo(dashWidth, 0);
+     * dashPath1.rLineTo(-dashWidth / 2, dashWidth);
+     * dashPath1.rLineTo(-dashWidth / 2, -dashWidth);
+     * path = new Path();
+     * path.addOval(0, 0, 250, 200, Path.Direction.CW);
+     * PathEffect pathDashPathEffect1 = new PathDashPathEffect(dashPath1, 40, 0, PathDashPathEffect.Style.TRANSLATE);
+     * paint.setPathEffect(pathDashPathEffect1);
+     */
+    @Multiline
+    static String INFO_7;
+
+    /**
+     * Path dashPath2 = new Path();
+     * dashPath2.rLineTo(dashWidth, 0);
+     * dashPath2.rLineTo(-dashWidth / 2, dashWidth);
+     * dashPath2.rLineTo(-dashWidth / 2, -dashWidth);
+     * path = new Path();
+     * path.addOval(0, 0, 250, 200, Path.Direction.CW);
+     * PathEffect pathDashPathEffect2 = new PathDashPathEffect(dashPath2, 40, 0, PathDashPathEffect.Style.ROTATE);
+     * paint.setPathEffect(pathDashPathEffect2);
+     */
+    @Multiline
+    static String INFO_8;
+
+    /**
+     * Path dashPath3 = new Path();
+     * dashPath3.rLineTo(dashWidth, 0);
+     * dashPath3.rLineTo(-dashWidth / 2, dashWidth);
+     * dashPath3.rLineTo(-dashWidth / 2, -dashWidth);
+     * path = new Path();
+     * path.addOval(0, 0, 250, 200, Path.Direction.CW);
+     * PathEffect pathDashPathEffect3 = new PathDashPathEffect(dashPath3, 40, 0, PathDashPathEffect.Style.MORPH);
+     * paint.setPathEffect(pathDashPathEffect3);
+     */
+    @Multiline
+    static String INFO_9;
+
+    /**
+     * 组合效果类的 PathEffect
+     * ComposePathEffect
+     * ComposePathEffect(PathEffect outerpe, PathEffect innerpe)
+     * 先对目标 Path 使用一个 PathEffect，然后再对这个改变后的 Path 使用另一个 PathEffect。
+     * innerpe 是先应用的， outerpe 是后应用的。
+     *
+     * PathEffect pathEffect1 = new DashPathEffect(new float[]{20, 10, 20, 5}, 10);
+     * PathEffect pathEffect2 = new DiscretePathEffect(20, 5);
+     * PathEffect composePathEffect = new ComposePathEffect(pathEffect1, pathEffect2);
+     * paint.setPathEffect(composePathEffect);
+     */
+    @Multiline
+    static String INFO_10;
+
+    /**
+     * 在之后的绘制内容下面加一层阴影
+     * setShadowLayer(float radius, float dx, float dy, int shadowColor)
+     * radius 是阴影的模糊范围；
+     * dx dy 是阴影的偏移量；
+     * shadowColor 是阴影的颜色。
+     * 如果要清除阴影层，使用 clearShadowLayer() 。
+     * 在硬件加速开启的情况下， setShadowLayer() 只支持文字的绘制，文字之外的绘制必须关闭硬件加速才能正常绘制阴影。
+     * 如果 shadowColor 是半透明的，阴影的透明度就使用 shadowColor 自己的透明度；而如果  shadowColor 是不透明的，阴影的透明度就使用 paint 的透明度。
+     *
+     * paint = new Paint();
+     * paint.setTextSize(60);
+     * paint.setShadowLayer(10, 0, 0, Color.RED);
+     */
+    @Multiline
+    static String INFO_11;
 }

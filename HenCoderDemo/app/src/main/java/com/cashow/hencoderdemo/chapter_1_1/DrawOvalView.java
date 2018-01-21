@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawOvalView extends BaseView {
     private Paint paint;
 
@@ -53,18 +55,20 @@ public class DrawOvalView extends BaseView {
         canvas.drawOval(0, 0, 200, 100, paint);
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "drawOval(float left, float top, float right, float bottom, Paint paint)：\n" +
-                        "left, top, right, bottom 是这个椭圆的左、上、右、下四个边界点的坐标\n\n" +
-                        "paint.setStyle(Paint.Style.FILL)\n" +
-                        "canvas.drawOval(0, 0, 200, 100, paint)";
-            case 1:
-                return "paint.setStyle(Paint.Style.STROKE)\n" +
-                        "canvas.drawOval(0, 0, 200, 100, paint)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+    /**
+     * drawOval(float left, float top, float right, float bottom, Paint paint)：
+     * left, top, right, bottom 是这个椭圆的左、上、右、下四个边界点的坐标
+     *
+     * paint.setStyle(Paint.Style.FILL);
+     * canvas.drawOval(0, 0, 200, 100, paint);
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * paint.setStyle(Paint.Style.STROKE);
+     * canvas.drawOval(0, 0, 200, 100, paint);
+     */
+    @Multiline
+    static String INFO_1;
 }

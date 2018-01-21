@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 
 import com.cashow.hencoderdemo.common.BaseView;
 
+import org.adrianwalker.multilinestring.Multiline;
+
 public class DrawColorView extends BaseView {
     private Paint paint;
 
@@ -55,20 +57,34 @@ public class DrawColorView extends BaseView {
         }
     }
 
-    @Override
-    public String getViewTypeInfo(int viewType) {
-        switch (viewType) {
-            case 0:
-                return "原图";
-            case 1:
-                return "drawColor(Color.BLACK)";
-            case 2:
-                return "drawColor(Color.parseColor(\"#88880000\"))";
-            case 3:
-                return "drawRGB(100, 200, 100)";
-            case 4:
-                return "drawARGB(100, 100, 200, 100)";
-        }
-        return super.getViewTypeInfo(viewType);
-    }
+
+    /**
+     * 原图
+     */
+    @Multiline
+    static String INFO_0;
+
+    /**
+     * drawColor(Color.BLACK);
+     */
+    @Multiline
+    static String INFO_1;
+
+    /**
+     * drawColor(Color.parseColor("#88880000"));
+     */
+    @Multiline
+    static String INFO_2;
+
+    /**
+     * drawRGB(100, 200, 100);
+     */
+    @Multiline
+    static String INFO_3;
+
+    /**
+     * drawARGB(100, 100, 200, 100);
+     */
+    @Multiline
+    static String INFO_4;
 }
