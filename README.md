@@ -2,6 +2,10 @@
 
 这个项目主要记录工作中遇到的一些问题以及相应的解决方案
 
+### [AndroidTestDemo](https://github.com/cashow/AndroidTricks/tree/master/AndroidTestDemo)
+
+单元测试和 UI 测试的学习笔记
+
 ### [AnnotationDemo](https://github.com/cashow/AndroidTricks/tree/master/AnnotationDemo)
 
 注解的学习笔记
