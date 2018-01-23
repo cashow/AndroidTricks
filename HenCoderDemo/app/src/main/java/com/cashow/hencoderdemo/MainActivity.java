@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        onChapter1PracticeClick(null);
+//        onChapter1PracticeClick(null);
     }
 
     @OnClick(R.id.button_chapter_1_1)

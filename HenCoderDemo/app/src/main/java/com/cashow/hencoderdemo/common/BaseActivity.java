@@ -136,8 +136,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         try {
             Class clz = baseView.getClass();
             Field field = clz.getDeclaredField("INFO_" + viewType);
+            field.setAccessible(true);
             return field.get(baseView).toString();
         } catch (Exception e) {
+            e.printStackTrace();
             return "";
         }
     }
