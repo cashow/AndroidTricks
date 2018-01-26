@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cashow.daggerdemo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".demo1.Demo1Activity"/>
+        <activity android:name=".demo2.Demo2Activity"/>
+        <activity android:name=".demo3.Demo3Activity"/>
+        <activity android:name=".demo4.Demo4Activity"/>
+        <activity android:name=".demo5.Demo5Activity"/>
+        <activity android:name=".demo6.Demo6Activity"/>
+        <activity android:name=".demo7.Demo7Activity"/>
+        <activity android:name=".demo8.Demo8Activity"/>
+        <activity android:name=".demo9.Demo9Activity"/>
+    </application>
+
+</manifest>

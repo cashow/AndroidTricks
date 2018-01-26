@@ -26,6 +26,10 @@ ConstraintLayout 的学习笔记
 
 CoordinatorLayout 的学习笔记
 
+### [DaggerDemo](https://github.com/cashow/AndroidTricks/tree/master/DaggerDemo)
+
+Dagger 的学习笔记
+
 ### [DataBindingDemo](https://github.com/cashow/AndroidTricks/tree/master/DataBindingDemo)
 
 Data Binding 的学习笔记
