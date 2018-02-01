@@ -74,5 +74,12 @@
             android:layout_height="wrap_content"
             style="@style/ButtonStyle"
             android:text="9. 懒加载"/>
+
+        <Button
+            android:id="@+id/button_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="10. "/>
     </LinearLayout>
 </ScrollView>

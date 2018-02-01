@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.cashow.daggerdemo.demo1.Demo1Activity;
+import com.cashow.daggerdemo.demo10.Demo10Activity;
 import com.cashow.daggerdemo.demo2.Demo2Activity;
 import com.cashow.daggerdemo.demo3.Demo3Activity;
 import com.cashow.daggerdemo.demo4.Demo4Activity;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.button_9)
     void onButton9Click(Button button) {
         startChapterActivity(Demo9Activity.class, button);
+    }
+
+    @OnClick(R.id.button_10)
+    void onButton10Click(Button button) {
+        startChapterActivity(Demo10Activity.class, button);
     }
 
     private void startChapterActivity(Class clz, Button button) {
