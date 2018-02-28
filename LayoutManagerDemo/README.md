@@ -19,6 +19,16 @@ LayoutManager 学习笔记
 
 ---
 
+demo 下载链接：
+
+<http://7sbs06.com1.z0.glb.clouddn.com/layout_manager_demo.apk>
+
+demo 二维码：
+
+![qrcode](https://github.com/cashow/AndroidTricks/blob/master/LayoutManagerDemo/qrcode.png)
+
+---
+
 ## Recycler
 
 当你需要回收旧的 view，或者从已回收的 view 中获取新的 view 时，你的 LayoutManager 会得到一个 Recycler 实例。
