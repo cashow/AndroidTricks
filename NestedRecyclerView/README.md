@@ -8,6 +8,16 @@
 
 3.将竖向的 RecyclerView 隐藏后再显示。
 
+demo 下载链接：
+
+<http://7sbs06.com1.z0.glb.clouddn.com/nested_recycler_view.apk>
+
+demo 二维码：
+
+![qrcode](https://github.com/cashow/AndroidTricks/blob/master/NestedRecyclerView/qrcode.png)
+
+示意图：
+
 ![demo](http://7sbs06.com1.z0.glb.clouddn.com/nested_recycler_view_scroll_down.gif?a=b)
 
 在确定了复现步骤后，我 Google 到了这个回答：
