@@ -4,6 +4,14 @@
 
 这个项目是实现用来模糊图片背景的笔刷功能。
 
+demo 下载链接：
+
+<http://7sbs06.com1.z0.glb.clouddn.com/photo_brush.apk>
+
+demo 二维码：
+
+![qrcode](https://github.com/cashow/AndroidTricks/blob/master/PhotoBrush/qrcode.png)
+
 示例图：
 
 ![demo](https://github.com/cashow/AndroidTricks/blob/master/PhotoBrush/demo.gif)
