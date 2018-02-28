@@ -6,6 +6,14 @@
 
 <https://github.com/chentao0707/QrCodeScan>
 
+demo 下载链接：
+
+<http://7sbs06.com1.z0.glb.clouddn.com/qrcode_scan.apk>
+
+demo 二维码：
+
+![qrcode](https://github.com/cashow/AndroidTricks/blob/master/QrcodeScan/qrcode.png)
+
 示例图：
 
 ![demo](https://github.com/cashow/AndroidTricks/blob/master/QrcodeScan/demo.gif)
