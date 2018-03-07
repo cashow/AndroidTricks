@@ -14,6 +14,10 @@
 
 一个简单的长图文编辑器
 
+### [CancelDisposable](https://github.com/cashow/AndroidTricks/tree/master/CancelDisposable)
+
+实现了一个自定义的编译时注解，只要给 Activity 或 Fragment 加上 @DisposableList 注解，在页面销毁时通过一行代码就可以把 Activity 或 Fragment 里所有的 Disposable 都取消掉。
+
 ### [CleanMVPDemo](https://github.com/cashow/AndroidTricks/tree/master/CleanMVPDemo)
 
 Clean 架构学习笔记
