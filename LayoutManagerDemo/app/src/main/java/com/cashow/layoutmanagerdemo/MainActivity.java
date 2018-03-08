@@ -1,33 +1,21 @@
 package com.cashow.layoutmanagerdemo;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 
-import com.cashow.layoutmanagerdemo.adapter.MyAdapter;
-import com.cashow.layoutmanagerdemo.adapter.MyCardAdapter;
-import com.cashow.layoutmanagerdemo.adapter.MyFlowAdapter;
-import com.cashow.layoutmanagerdemo.adapter.MyImageAdapter;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyAnimHorizontalLayoutManager;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyAnimHorizontalLayoutManager2;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyFlowLayoutManager;
-import com.cashow.layoutmanagerdemo.layoutmanager.MyGalleryLayoutManager;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyHorizontalLayoutManager;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyLayoutManager;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyLayoutManager2;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyLayoutManager3;
 import com.cashow.layoutmanagerdemo.layoutmanager.MyLinearLayoutManager;
 import com.cashow.layoutmanagerdemo.layoutmanager.MySwipeCardLayoutManager;
-import com.cashow.layoutmanagerdemo.swipecard.CardConfig;
-import com.cashow.layoutmanagerdemo.swipecard.MySwipeCallback;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 每个 LayoutManager 的区别：
@@ -88,15 +76,6 @@ import butterknife.ButterKnife;
  * 在滑动中获取到的 RecyclerView 的子 view 数有 4 个
  */
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerview;
-
-    MyAdapter myAdapter;
-    MyFlowAdapter myFlowAdapter;
-    MyImageAdapter myImageAdapter;
-    MyCardAdapter myCardAdapter;
-
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,89 +83,50 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-
-        myAdapter = new MyAdapter();
-        myFlowAdapter = new MyFlowAdapter();
-        myImageAdapter = new MyImageAdapter();
-        myCardAdapter = new MyCardAdapter();
-
-//        setMyLayoutManager();
-//        setMyLayoutManager2();
-//        setMyLayoutManager3();
-//        setMyLinearLayoutManager();
-//        setMyFlowLayoutManager();
-//        setMyHorizontalLayoutManager();
-//        setMyGalleryLayoutManager();
-//        setMyAnimHorizontalLayoutManager();
-//        setMyAnimHorizontalLayoutManager2();
-        setMySwipeCardLayoutManager();
-
-        recyclerview.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                MLog.d("onScrollChange : " + recyclerview.getChildCount());
-            }
-        });
     }
 
-    private void setMyGalleryLayoutManager() {
-        recyclerview.setLayoutManager(new MyGalleryLayoutManager());
-        recyclerview.setAdapter(myImageAdapter);
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerview);
+    @OnClick(R.id.button_activity_1)
+    void onActivity1Click() {
+        startActivity(new Intent(this, Activity1.class));
     }
 
-    private void setMyHorizontalLayoutManager() {
-        recyclerview.setLayoutManager(new MyHorizontalLayoutManager());
-        recyclerview.setAdapter(myImageAdapter);
+    @OnClick(R.id.button_activity_2)
+    void onActivity2Click() {
+        startActivity(new Intent(this, Activity2.class));
     }
 
-    private void setMyAnimHorizontalLayoutManager() {
-        recyclerview.setLayoutManager(new MyAnimHorizontalLayoutManager());
-        recyclerview.setAdapter(myImageAdapter);
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerview);
+    @OnClick(R.id.button_activity_3)
+    void onActivity3Click() {
+        startActivity(new Intent(this, Activity3.class));
     }
 
-    private void setMyAnimHorizontalLayoutManager2() {
-        recyclerview.setLayoutManager(new MyAnimHorizontalLayoutManager2());
-        recyclerview.setAdapter(myImageAdapter);
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerview);
+    @OnClick(R.id.button_activity_4)
+    void onActivity4Click() {
+        startActivity(new Intent(this, Activity4.class));
     }
 
-    private void setMyFlowLayoutManager() {
-        recyclerview.setLayoutManager(new MyFlowLayoutManager());
-        recyclerview.setAdapter(myFlowAdapter);
+    @OnClick(R.id.button_activity_5)
+    void onActivity5Click() {
+        startActivity(new Intent(this, Activity5.class));
     }
 
-    private void setMyLinearLayoutManager() {
-        recyclerview.setLayoutManager(new MyLinearLayoutManager(context));
-        recyclerview.setAdapter(myAdapter);
+    @OnClick(R.id.button_activity_6)
+    void onActivity6Click() {
+        startActivity(new Intent(this, Activity6.class));
     }
 
-    private void setMyLayoutManager3() {
-        recyclerview.setLayoutManager(new MyLayoutManager3());
-        recyclerview.setAdapter(myAdapter);
+    @OnClick(R.id.button_activity_7)
+    void onActivity7Click() {
+        startActivity(new Intent(this, Activity7.class));
     }
 
-    private void setMyLayoutManager2() {
-        recyclerview.setLayoutManager(new MyLayoutManager2());
-        recyclerview.setAdapter(myAdapter);
+    @OnClick(R.id.button_activity_8)
+    void onActivity8Click() {
+        startActivity(new Intent(this, Activity8.class));
     }
 
-    private void setMyLayoutManager() {
-        recyclerview.setLayoutManager(new MyLayoutManager());
-        recyclerview.setAdapter(myAdapter);
-    }
-
-    private void setMySwipeCardLayoutManager() {
-        recyclerview.setLayoutManager(new MySwipeCardLayoutManager());
-        recyclerview.setAdapter(myCardAdapter);
-
-        CardConfig.initConfig(this);
-        ItemTouchHelper.Callback callback = new MySwipeCallback(recyclerview, myCardAdapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
-        itemTouchHelper.attachToRecyclerView(recyclerview);
+    @OnClick(R.id.button_activity_9)
+    void onActivity9Click() {
+        startActivity(new Intent(this, Activity9.class));
     }
 }

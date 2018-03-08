@@ -1,17 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cashow.layoutmanagerdemo.MainActivity">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="384dp"
-        android:layout_height="511dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/button_activity_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyLayoutManager"/>
+
+        <TextView
+            android:id="@+id/button_activity_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyLayoutManager2"/>
+
+        <TextView
+            android:id="@+id/button_activity_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyLayoutManager3"/>
+
+        <TextView
+            android:id="@+id/button_activity_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyLinearLayoutManager"/>
+
+        <TextView
+            android:id="@+id/button_activity_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyFlowLayoutManager"/>
+
+        <TextView
+            android:id="@+id/button_activity_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyHorizontalLayoutManager"/>
+
+        <TextView
+            android:id="@+id/button_activity_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyAnimHorizontalLayoutManager"/>
+
+        <TextView
+            android:id="@+id/button_activity_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MyAnimHorizontalLayoutManager2"/>
+
+        <TextView
+            android:id="@+id/button_activity_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            android:text="MySwipeCardLayoutManager"/>
+    </LinearLayout>
+</ScrollView>

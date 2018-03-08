@@ -21,7 +21,7 @@ LayoutManager 学习笔记
 
 demo 下载链接：
 
-<http://7sbs06.com1.z0.glb.clouddn.com/layout_manager_demo.apk>
+<http://7sbs06.com1.z0.glb.clouddn.com/layout_manager_demo_v2.apk>
 
 demo 二维码：
 
@@ -52,7 +52,7 @@ Recycler 有两种 view 的缓存机制：scrap heap 和 recycle pool。
 在 scrap heap 中的 view 可以不经过 adapter 直接返回给 LayoutManager。当 view 被 detach 时，view 被缓存在这里，如果同一个布局出现了，这个 view 会被重用。比如说，在你调用 `notifyDataSetChanged()` 时，已经在屏幕中显示并且数据没有变动的 view 不需要重新调用 `onCreateViewHolder()`，也不需要重新调用 `onBindViewHolder()`，因为这些 view 是存放在 scrap heap 中的。
 
 在 recycle pool 中的 view 都是被看作是有错误数据的 view，在重用前需要重新调用 `onBindViewHolder()`。比如说，在你滑动 RecyclerView 时，滑出屏幕的 view 会放到 recycle pool 中，滑入屏幕的 view 会复用之前的 view 并通过 `onBindViewHolder()` 更新 view 显示的内容。
- 
+
 当 LayoutManager 需要一个新的 view 时，Recycler 会先检查 scrap heap 中有没有对应 position/id 的 view，如果有，会直接返回这个 view，不需要重新绑定。如果没有，Recycler 会去 recycle pool 里找一个合适的 view，并重新绑定数据（`onBindViewHolder()`会被调用）。如果还是没有合适的 view，会创建一个新的 view（`onCreateViewHolder()`会被调用）。
 
 ### 使用技巧
@@ -77,20 +77,20 @@ LayoutManager 负责实时添加、测量 view，以及对子 view 进行布局�
 @Override
 public RecyclerView.LayoutParams generateDefaultLayoutParams() {
     return new RecyclerView.LayoutParams(
-            RecyclerView.LayoutParams.WRAP_CONTENT, 
+            RecyclerView.LayoutParams.WRAP_CONTENT,
             RecyclerView.LayoutParams.WRAP_CONTENT);
 }
 ```
 
 ### onLayoutChildren()
 
-这个方法负责对 view 布局，是 LayoutManager 的入口。它会在如下情况下被调用： 
-1. 在 RecyclerView 初始化时，会被调用两次； 
-2. 在调用 adapter.notifyDataSetChanged() 时，会被调用； 
-3. 在调用 setAdapter 替换 Adapter 时,会被调用； 
-4. 在 RecyclerView 执行动画时，它也会被调用。 
+这个方法负责对 view 布局，是 LayoutManager 的入口。它会在如下情况下被调用：
+1. 在 RecyclerView 初始化时，会被调用两次；
+2. 在调用 adapter.notifyDataSetChanged() 时，会被调用；
+3. 在调用 setAdapter 替换 Adapter 时,会被调用；
+4. 在 RecyclerView 执行动画时，它也会被调用。
 
-即 RecyclerView 初始化、 数据源改变时都会被调用。 
+即 RecyclerView 初始化、 数据源改变时都会被调用。
 
 如果要实现一个垂直方向的 LayoutManager：
 
@@ -233,7 +233,7 @@ public class MyLayoutManager2 extends LayoutManager {
 }
 ```
 
-在这个方法里，我们需要自己手工移动这些视图。 `offsetChildrenVertical()` 和 `offsetChildrenHorizontal()` 这两个方法可以帮助我们处理匀速移动。 如果你不实现它，你的视图就不会滚动。 
+在这个方法里，我们需要自己手工移动这些视图。 `offsetChildrenVertical()` 和 `offsetChildrenHorizontal()` 这两个方法可以帮助我们处理匀速移动。 如果你不实现它，你的视图就不会滚动。
 
 ---
 
