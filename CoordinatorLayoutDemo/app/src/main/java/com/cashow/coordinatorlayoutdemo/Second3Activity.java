@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SecondActivity extends AppCompatActivity {
+public class Second3Activity extends AppCompatActivity {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
     @BindView(R.id.toolbar)
@@ -20,7 +20,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_scroll_enteralways_exituntilcollapsed);
+        setContentView(R.layout.activity_second_scroll_enteralways_enteralwayscollapsed);
         ButterKnife.bind(this);
 
         toolbar.setTitle("title");

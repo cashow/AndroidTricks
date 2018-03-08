@@ -9,6 +9,16 @@ CoordinatorLayout 的学习笔记
 
 ---
 
+demo 下载链接：
+
+<http://7sbs06.com1.z0.glb.clouddn.com/coordinator_layout_demo.apk>
+
+demo 二维码：
+
+![qrcode](https://github.com/cashow/AndroidTricks/blob/master/CoordinatorLayoutDemo/qrcode.png)
+
+---
+
 ### FloatingActionButton 与 Snackbar
 
 CoordinatorLayout 可以用来配合 FloatingActionButton 的 layout_anchor 和 layout_gravity 属性创造出浮动效果。
