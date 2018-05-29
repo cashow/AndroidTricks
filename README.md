@@ -10,6 +10,10 @@
 
 注解的学习笔记
 
+### [AopDemo](https://github.com/cashow/AndroidTricks/tree/master/AopDemo)
+
+利用 AspectJ 实现 AOP（面向切面编程）的 demo。
+
 ### [ArticleEditor](https://github.com/cashow/AndroidTricks/tree/master/ArticleEditor)
 
 一个简单的长图文编辑器
