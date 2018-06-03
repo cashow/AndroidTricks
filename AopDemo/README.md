@@ -7,7 +7,8 @@
 ### 相关链接
 
 <https://www.jianshu.com/p/0fa8073fd144>  
-<https://blog.csdn.net/crazy__chen/article/details/52014672>
+<https://blog.csdn.net/crazy__chen/article/details/52014672>  
+<https://blog.csdn.net/innost/article/details/49387395>
 
 --------
 
@@ -505,3 +506,65 @@ public class MainActivity$AjcClosure1 extends AroundClosure {
 ```
 
 由上面的代码可以看出，MainActivity 里原先在 `onCreate()` 的代码被放入了 `onCreate_aroundBody0()` 方法里，而 `onCreate_aroundBody0()` 方法会在 MainActivity$AjcClosure1 的 `run()` 方法里被调用。MainActivity 里新的 `onCreate()` 调用的是 Hugo.aspectOf().logAndExecute()，在这里会执行 Hugo.java 里的 `logAndExecute()` 方法。
+
+
+-----------------
+
+## AspectJ 语法
+
+### Join Points
+
+Join Points 就是程序运行时的一些执行点，比如：
+
+* 一个函数的调用可以是一个 JPoint。比如 Log.e() 这个函数。e 的执行可以是一个 JPoint，而调用 e 的函数也可以认为是一个 JPoint。
+* 设置一个变量，或者读取一个变量，也可以是一个 JPoint。
+* for 循环可以看做是 JPoint。
+
+理论上说，一个程序中很多地方都可以被看做是 JPoint，但是 AspectJ 中，只有以下所示的几种执行点被认为是 JPoints：
+
+Join Points | 说明 | 示例
+------------ | ----- | -----
+method call | 函数调用 | 比如调用 Log.e()，这是一处 JPoint
+method execution | 函数执行 | 比如 Log.e() 的执行内部，是一处 JPoint。注意它和 method call 的区别。method call 是调用某个函数的地方。而 execution 是某个函数执行的内部。
+constructor call | 构造函数调用 | 和 method call 类似
+constructor execution | 构造函数执行 | 和 method execution 类似
+field get | 获取某个变量 | 比如读取 DemoActivity.debug 成员
+field set | 设置某个变量 | 比如设置 DemoActivity.debug 成员
+pre-initialization | Object 在构造函数中做得一些工作。 | 很少使用
+initialization | Object 在构造函数中做得工作 |
+static initialization | 类初始化 | 比如类的 static{}
+handler | 异常处理 | 比如 try catch(xxx) 中，对应 catch 内的执行
+advice execution | 这个是 AspectJ 的内容，稍后再说 |  
+
+### Pointcuts
+
+一个程序会有很多的 JPoints，即使是同一个函数，还分为 call 类型和 execution 类型的 JPoint。显然，不是所有的 JPoint，也不是所有类型的 JPoint 都是我们关注的。
+
+怎么从一堆一堆的 JPoints 中选择自己想要的 JPoints 呢？恩，这就是 Pointcuts 的功能。一句话，Pointcuts 的目标是提供一种方法使得开发者能够选择自己感兴趣的 JoinPoints。
+
+如果想把代码中所有调用 println 的地方找到，代码该这么写：
+
+```
+public pointcut testAll(): call(public * *.println(..)) && !within(TestAspect);
+```
+
+注意，aspectj 的语法和 Java 一样，只不过多了一些关键词。
+
+在上述代码中：
+
+* 第一个 public：表示这个 pointcut 是 public 访问。这主要和 aspect 的继承关系有关，属于 AspectJ 的高级玩法，本文不考虑。
+* pointcut：关键词，表示这里定义的是一个 pointcut。pointcut 定义有点像函数定义。总之，在 AspectJ 中，你得定义一个 pointcut。
+* testAll()：pointcut 的名字。在 AspectJ 中，定义 Pointcut 可分为有名和匿名两种办法。个人建议使用 named 方法。因为在后面，我们要使用一个 pointcut 的话，就可以直接使用它的名字就好。testAll 后面有一个冒号，这是 pointcut 定义名字后，必须加上。冒号后面是这个 pointcut 怎么选择 Joinpoint 的条件。
+
+本例中，call(public * *.println(..)) 是一种选择条件。call 表示我们选择的 Joinpoint 类型为 call 类型。
+
+public * *.println(..)：这小行代码使用了通配符。由于我们这里选择的 JoinPoint 类型为 call 类型，它对应的目标 JPoint 一定是某个函数。所以我们要找到这个函数。public 表示目标 JPoint 的访问类型（public/private/protect）。第一个 * 表示返回值的类型是任意类型。第二个 * 用来指明包名。此处不限定包名。紧接其后的 println 是函数名。这表明我们选择的函数是任何包中定义的名字叫 println 的函数。当然，唯一确定一个函数除了包名外，还有它的参数。在 (..) 中，就指明了目标函数的参数应该是什么样子的。比如这里使用了通配符..，代表任意个数的参数，任意类型的参数。
+
+再来看 call 后面的 &&：AspectJ 可以把几个条件组合起来，目前支持 &&，||，以及！这三个条件。这三个条件的意思和 Java 中的是一样的。
+
+来看最后一个 !within(TestAspectJ)：前面的! 表示不满足某个条件。within 是另外一种类型选择方法，特别注意，这种类型和前面讲到的 joinpoint 的那几种类型不同。within 的类型是数据类型，而 joinpoint 的类型更像是动态的，执行时的类型。
+
+上例中的 pointcut 合起来就是：
+
+* 选择那些调用 println（而且不考虑 println 函数的参数是什么）的 Joinpoint。
+* 另外，调用者的类型不要是 TestAspect 的。
