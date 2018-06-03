@@ -446,3 +446,62 @@ final class Strings {
 MainActivity: ⇢ onCreate(savedInstanceState=null)
 MainActivity: ⇠ onCreate [83ms]
 ```
+
+### 生成的代码
+
+这是项目中 MainActivity.java 的代码：
+
+```java
+public class MainActivity extends AppCompatActivity {
+    @DebugLog
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+```
+
+通过 dex2jar 和 jd-gui 对生成的 apk 进行反编译，可看到最终生成的 MainActivity.class 是这样的：
+
+```java
+public class MainActivity extends AppCompatActivity {
+  private static final JoinPoint.StaticPart ajc$tjp_0;
+
+  static {}
+
+  private static void ajc$preClinit() {
+    Factory localFactory = new Factory("MainActivity.java", MainActivity.class);
+    ajc$tjp_0 = localFactory.makeSJP("method-execution", localFactory.makeMethodSig("4", "onCreate", "com.cashow.aopdemo.MainActivity", "android.os.Bundle", "savedInstanceState", "", "void"), 13);
+  }
+
+  static final void onCreate_aroundBody0(MainActivity paramMainActivity, Bundle paramBundle, JoinPoint paramJoinPoint) {
+    paramMainActivity.onCreate(paramBundle);
+    paramMainActivity.setContentView(2131296283);
+  }
+
+  @DebugLog
+  protected void onCreate(Bundle paramBundle) {
+    JoinPoint localJoinPoint = Factory.makeJP(ajc$tjp_0, this, this, paramBundle);
+    Hugo.aspectOf().logAndExecute(new MainActivity.AjcClosure1(new Object[] { this, paramBundle, localJoinPoint }).linkClosureAndJoinPoint(69648));
+  }
+}
+```
+
+其中，MainActivity$AjcClosure1 的代码：
+
+```java
+public class MainActivity$AjcClosure1 extends AroundClosure {
+  public MainActivity$AjcClosure1(Object[] paramArrayOfObject) {
+    super(paramArrayOfObject);
+  }
+
+  public Object run(Object[] paramArrayOfObject) {
+    paramArrayOfObject = this.state;
+    MainActivity.onCreate_aroundBody0((MainActivity)paramArrayOfObject[0], (Bundle)paramArrayOfObject[1], (JoinPoint)paramArrayOfObject[2]);
+    return null;
+  }
+}
+```
+
+由上面的代码可以看出，MainActivity 里原先在 `onCreate()` 的代码被放入了 `onCreate_aroundBody0()` 方法里，而 `onCreate_aroundBody0()` 方法会在 MainActivity$AjcClosure1 的 `run()` 方法里被调用。MainActivity 里新的 `onCreate()` 调用的是 Hugo.aspectOf().logAndExecute()，在这里会执行 Hugo.java 里的 `logAndExecute()` 方法。
