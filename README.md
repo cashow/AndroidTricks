@@ -98,6 +98,10 @@ LiveData 库的 demo
 
 RxJava 学习笔记
 
+### [SocketDemo](https://github.com/cashow/AndroidTricks/tree/master/SocketDemo)
+
+TODO: 在 Android 上开启 socket 服务器的 demo
+
 ### [TagGroup](https://github.com/cashow/AndroidTricks/tree/master/TagGroup)
 
 标签组
